@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+#ifdef LOCAL
+#include "debug.h"
+#else
+#define debug(...) 42
+#endif
+using namespace std;
+
+int main() {
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+
+  int n;
+  cin >> n;
+
+  int ans = 1;
+  int lastCount = 1;
+  int currentCount;
+  int lastVal;
+  int currentVal; 
+  cin >> lastVal; 
+  for( int i = 1; i < n; ++ i ) {
+    cin >> currentVal;
+    currentCount = currentVal >= lastVal ? lastCount+1 : 1;
+    ans = max(currentCount, ans);
+    lastCount = currentCount;
+    lastVal = currentVal;
+  }
+
+  cout << ans << endl; 
+
+  return 0;
+}
