@@ -1,30 +1,28 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
 #include <algorithm>
-#include <bitset>
-#include <cctype>
+#include <set>
 #include <cmath>
+#include <sstream>
+#include <utility>
+#include <cctype>
+#include <numeric>
+#include <queue>
+#include <deque>
+#include <list>
+#include <stack>
+#include <bitset>
+#include <limits>
+#include <ctime>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <ctime>
-#include <deque>
-#include <fstream>
+#include <iomanip>
 #include <functional>
 #include <inttypes.h>
-#include <iomanip>
-#include <iostream>
-#include <limits>
-#include <list>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
+#include <fstream>
 using namespace std;
 #ifdef LOCAL
 #include "debug.h"
@@ -233,10 +231,32 @@ template<class T> inline void tmin( T& ans , const T& a , const T& b ){ if( a < 
 int main() {
   cin.tie(0);
   ios::sync_with_stdio(0);
-  int a , b;
+  int n;
+  cin >> n;
+  map<string, int> m;
+  for( int i = 0; i < n; ++ i ){
+    string s;
+    cin >> s;
+    if( !incontainer(m,s) )
+      m[s] = 0;
+    
+    if( m[s] == 0 )
+      cout << "OK" << endl;
+    else  
+      cout <<  <<endl;
+    m[s] += 1;
+  }
 
-  cin >> a >> b;
-  cout << a+b << endl;
+
+  for( int i = 0; i < 10; ++i ) {
+    if( i%2 == 0 ) {
+      System.out.println("Even")
+    }
+    else {
+      System.out.println("Odd")
+    }  
+  }
+
 
   return 0;
 }
