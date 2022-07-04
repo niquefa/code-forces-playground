@@ -1,6 +1,9 @@
 import sys
 
-def LI(): return list(map(int, sys.stdin.readline().strip().split()))
+
+def LI():
+    return list(map(int, sys.stdin.readline().strip().split()))
+
 
 def solve():
     input()
@@ -17,11 +20,10 @@ def solve():
                 break
     print(ans)
 
+
 def main():
     solve()
 
+
 if __name__ == "__main__":
     main()
-
-
-

@@ -1,16 +1,22 @@
 import sys
 
-def LI(): return list(map(int, sys.stdin.readline().strip().split()))
-def MI(): return map(int, sys.stdin.readline().strip().split())
+
+def LI():
+    return list(map(int, sys.stdin.readline().strip().split()))
+
+
+def MI():
+    return map(int, sys.stdin.readline().strip().split())
+
 
 # def solve(a):
-    
+
 #     even_count = 0
 #     odd_count = 0
 #     for i in range(len(a)):
 #         even_count += 1 if a[i]%2 == 0 else 0
 #         odd_count += 1 if a[i]%2 == 1 else 0
-    
+
 #     if even_count%2 != odd_count%2:
 #         print("NO")
 #         return
@@ -57,6 +63,6 @@ for tt in range(t):
             print("YES")
             # print("+++++")
         else:
-            print ("NO")
+            print("NO")
     else:
-        print ("YES")
+        print("YES")

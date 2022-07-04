@@ -1,6 +1,9 @@
 import sys
- 
-def LI(): return list(map(int, sys.stdin.readline().strip().split()))
+
+
+def LI():
+    return list(map(int, sys.stdin.readline().strip().split()))
+
 
 def main():
     k = int(input())
@@ -12,8 +15,9 @@ def main():
             break
         ans += 1
         accum += x
-    
+
     print("-1" if accum < k else str(ans))
+
 
 if __name__ == "__main__":
     main()
