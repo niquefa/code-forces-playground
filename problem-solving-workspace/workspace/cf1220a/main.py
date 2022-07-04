@@ -19,7 +19,7 @@ def S():
 
 
 def get_count(string_number, m):
-    min = len(string_number)
+    min = 1000000
     for c in string_number:
         min = m[c] if m[c] < min else min
     return min
@@ -30,7 +30,11 @@ def main():
     s = S()
     m = Counter(s)
     ones = get_count("one", m)
+
+    for c in "one":
+        m[c] = 0 if c not in m else m[c] - ones
     zeroes = get_count("zero", m)
+
     ans = ""
     for _ in range(ones):
         ans += "1 "
