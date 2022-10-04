@@ -1,6 +1,9 @@
 import sys
 
-def I(): return int(sys.stdin.readline().strip())
+
+def I():
+    return int(sys.stdin.readline().strip())
+
 
 n = I()
 
