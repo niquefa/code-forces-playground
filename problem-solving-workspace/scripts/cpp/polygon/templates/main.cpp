@@ -1,36 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
 #include <algorithm>
-#include <bitset>
-#include <cctype>
+#include <set>
 #include <cmath>
+#include <sstream>
+#include <utility>
+#include <cctype>
+#include <numeric>
+#include <queue>
+#include <deque>
+#include <list>
+#include <stack>
+#include <bitset>
+#include <limits>
+#include <ctime>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <ctime>
-#include <deque>
-#include <fstream>
+#include <iomanip>
 #include <functional>
 #include <inttypes.h>
-#include <iomanip>
-#include <iostream>
-#include <limits>
-#include <list>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
+#include <fstream>
 using namespace std;
-#ifdef LOCAL
-#include "debug.h"
-#else
-#define debug(...) 42
-#endif
 
 #define sz               size()
 #define fi(n)            for(int i=0;i<n;++i)
@@ -40,7 +33,7 @@ using namespace std;
 #define fijk(a,b,c)      for(int i=0;i<a;++i)for(int j=0;j<b;++j)for(int k=0;k<c;++k)
 #define ft(n)            for(int t=0;t<n;++t)
 #define fturno(n)        for(int turno=0;turno<n;++turno)
-#define fbit(n)			     for(int bit=0;bit<n;++bit)
+#define fbit(n)          for(int bit=0;bit<n;++bit)
 #define all(x)           (x).begin(),(x).end()
 #define sr(x)            std::sort((x).begin(),(x).end());
 #define pb               push_back
@@ -82,8 +75,11 @@ using namespace std;
 #define zero(a)          memset(a,0,sizeof(a));
 #define mone(a)          memset(a,-1,sizeof(a));
 #define allf(a)          memset(a,false,sizeof(a));
-#define vset(c)			 cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<*it<<" | ";cout << endl;
-#define vmap(c)			 cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<" ("<<it->first<<","<<it->second<<") |";cout << endl;
+                                                //Para     10011010100010000 = 79120
+
+
+#define vset(c)			     cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<*it<<" | ";cout << endl;
+#define vmap(c)			     cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<" ("<<it->first<<","<<it->second<<") |";cout << endl;
 #define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
 #define va(c)            cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"]\n":"|");
 #define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
@@ -118,7 +114,7 @@ template<class T> inline T sqr (T b){return(b*b);}
 template<class T,class E> T fpow( T b , E e){if(e<0) return 1/fpow(b,-e);if(e==0)return 1;else if(e%2==0)return sqr(fpow(b,e/2));else return b*fpow(b,e-1);}
 unsigned long long fmp(unsigned long long b, unsigned long long e, unsigned long long m){unsigned long long r = 1;while (e > 0) {if ((e & 1) == 1) r = (r * b) % m;e >>= 1;b = (b * b) % m;}return r;}
 
-//add unik(a); and unik(b) if not sure that the vectors are sets
+//unik(a);unik(b); a\F1adir lo anterior si no hay segudidad de que no hay elementos repetidos, si hay repetidos, quita de a, tantos elementos X como haya en b
 //set_intersection,set_union,set_symmetric_difference
 vector<int> ocd(vector<int>& a,vector<int>& b){  vector<int> c(a.size()+b.size());   sort(a.begin(),a.end());   sort(b.begin(),b.end());c.resize(int(set_difference(a.begin(),a.end(),b.begin(),b.end(),c.begin())-c.begin()));return c;}
 
@@ -162,21 +158,21 @@ const double PI = 3.1415926535897932384626433832795;
 inline int cmp(double x, double y = 0, double tol = EPS) {return (x <= y + tol) ? (x + tol < y) ? -1 : 0 : 1;}
 class P
 {
-   public:
-   double x, y;
-   P(double x_ = 0.0, double y_ = 0.0) : x(x_), y(y_) {}
-   P operator +(const P &o) const {return P(x + o.x, y + o.y);}
-   P operator -(const P &o) const {return P(x - o.x, y - o.y);}
-   P operator *(const double &m) const {return P(m * x, m * y);}
-   P operator /(const double &m) const {return P(x / m, y / m); }
-   double operator *(const P &o) const {return x * o.x + y * o.y; }// Dot Product
-   double operator ^(const P &o) const {return x * o.y - y * o.x; } // Cross Product
-   int cmp(const P& o)const{if (int t = ::cmp(x, o.x)) return t;return ::cmp(y, o.y);}
-   bool operator ==(const P &o) const {return cmp(o) == 0; }
-   bool operator !=(const P &o) const {return cmp(o) != 0; }
-   bool operator < (const P &o) const {return cmp(o) < 0; }
-   double dist(const P &o) const {double d1 = x - o.x, d2 = y - o.y;return sqrt(d1 * d1 + d2 * d2);}
-   friend ostream& operator <<(ostream &o, P p) {return o << "(" << p.x << ", " << p.y << ")";}
+    public:
+    double x, y;
+    P(double x_ = 0.0, double y_ = 0.0) : x(x_), y(y_) {}
+    P operator +(const P &o) const {return P(x + o.x, y + o.y);}
+    P operator -(const P &o) const {return P(x - o.x, y - o.y);}
+    P operator *(const double &m) const {return P(m * x, m * y);}
+    P operator /(const double &m) const {return P(x / m, y / m); }
+    double operator *(const P &o) const {return x * o.x + y * o.y; }// Dot Product
+    double operator ^(const P &o) const {return x * o.y - y * o.x; } // Cross Product
+    int cmp(const P& o)const{if (int t = ::cmp(x, o.x)) return t;return ::cmp(y, o.y);}
+    bool operator ==(const P &o) const {return cmp(o) == 0; }
+    bool operator !=(const P &o) const {return cmp(o) != 0; }
+    bool operator < (const P &o) const {return cmp(o) < 0; }
+    double dist(const P &o) const {double d1 = x - o.x, d2 = y - o.y;return sqrt(d1 * d1 + d2 * d2);}
+    friend ostream& operator <<(ostream &o, P p) {return o << "(" << p.x << ", " << p.y << ")";}
 };
 
 template<class T> int countbit(T n) {return (n==0)?0:(1+countbit(n&(n-1)));}
@@ -196,6 +192,7 @@ inline long long set_b( const long long& mask, const int& bit ){return mask | (1
 inline long long clear_b( const long long& mask, const int& bit ){return mask & (~(1LL << bit));}
 inline bool is_on( const long long& mask, const int& bit ){return (mask & (1LL << bit)) != 0LL;}
 inline bool is_off( const long long& mask, const int& bit ){return (mask & (1LL << bit)) == 0LL;}
+
 
 #define	b_is_proper_subset_of_a(a,b)      (  (a!=b) && ( (a&b)==b )  )
 #define	b_is_subset_of_a(a,b)             ( (a&b)==b )
@@ -230,13 +227,17 @@ template<class T> inline void tmin( T& ans , const T& a , const T& b ){ if( a < 
 //printf("%.25lf\n",);
 ////////////////////////////////////////////////////////////////////////////////
 
+//g++ hello.cc && ./a.out < t.in
 int main() {
+  ios_base::sync_with_stdio(false);
   cin.tie(0);
-  ios::sync_with_stdio(0);
-  int a , b;
-
-  cin >> a >> b;
-  cout << a+b << endl;
-
+  int test_cases;
+  cin >> test_cases;
+  for( int test = 0; test < test_cases; ++ test ) {
+    vector<int> a(3);
+    cin >> a[0] >> a[1] >> a[2];
+    sort(a.begin(), a.end());
+    cout << (a[0]+a[1] == a[2] ? "YES" : "NO") << endl;
+  }
   return 0;
 }

@@ -1,3 +1,12 @@
 {
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "files.associations": {
+    "*.html": "html",
+    "*.js": "javascriptreact",
+    "*.jsx": "javascriptreact",
+    "*.ts": "typescriptreact",
+    "*.tsx": "typescriptreact",
+    "vector": "cpp",
+    "ostream": "cpp"
+  }
 }

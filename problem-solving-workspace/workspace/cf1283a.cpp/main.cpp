@@ -25,27 +25,26 @@
 #include <fstream>
 using namespace std;
 
-const int MAX = 100002;
-int a[MAX];
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
-  int n ,t;
-  cin >> n >> t;
-  for (int i = 0; i < n; ++i) {
-    cin >> a[i];
-  }
-  int right_index = 0;
-  int current_sum = 0;
-  int longest_subarray_length = 0;
-  for ( int left_index = 0; left_index < n; ++ left_index ) {
-    while( right_index < n && current_sum + a[right_index] <= t ) {
-      current_sum += a[right_index];
-      ++ right_index;
+  int test_cases;
+  cin >> test_cases;
+  for( int test = 0; test < test_cases; ++ test ) {
+    int h , m;
+    cin >> h >> m;
+    int ans = 0;
+    while( h != 0 || m != 0 ) {
+      ++ ans;
+      ++ m;
+      if( m == 60 ) {
+        m = 0;
+        ++ h;
+      }
+      if ( h == 24 )
+        break;
     }
-    longest_subarray_length = max( longest_subarray_length , right_index - left_index );
-    current_sum -= a[left_index];
+    cout << ans << endl;
   }
-  cout << longest_subarray_length << endl;
   return 0;
 }

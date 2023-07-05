@@ -32,20 +32,19 @@ int main() {
   cin.tie(0);
   int n ,t;
   cin >> n >> t;
-  for (int i = 0; i < n; ++i) {
+  for (int i = 0; i < n; ++i)
     cin >> a[i];
-  }
   int right_index = 0;
   int current_sum = 0;
-  int longest_subarray_length = 0;
+  int longest_sub_array_length = 0;
   for ( int left_index = 0; left_index < n; ++ left_index ) {
     while( right_index < n && current_sum + a[right_index] <= t ) {
       current_sum += a[right_index];
       ++ right_index;
     }
-    longest_subarray_length = max( longest_subarray_length , right_index - left_index );
+    longest_sub_array_length = max( longest_sub_array_length , right_index - left_index );
     current_sum -= a[left_index];
   }
-  cout << longest_subarray_length << endl;
+  cout << longest_sub_array_length << endl;
   return 0;
 }
