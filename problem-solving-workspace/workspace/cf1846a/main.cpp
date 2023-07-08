@@ -31,9 +31,15 @@ int main() {
   int test_cases;
   cin >> test_cases;
   for( int test = 0; test < test_cases; ++ test ) {
-    int a;
-    cin >> a;
-    cout << ((360 % (180-a) == 0) ? "YES" : "NO") << endl;
+    int n, a, b, ans = 0;
+    cin >> n;
+    for( int i = 0; i < n; ++ i ) {
+      cin >> a >> b;
+      if( a > b ) {
+        ++ans;
+      }
+    }
+    cout << ans << endl;
   }
   return 0;
 }

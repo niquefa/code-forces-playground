@@ -12,9 +12,8 @@ def S(): return sys.stdin.readline().strip()
 
 
 def solve():
-    a = LI()
-    a.sort()
-    print("YES" if a[0] + a[1] == a[2] else "NO")
+    a, b, c = MI()
+    print("+" if a + b == c else "-")
 
 def main():
     test_count = I()

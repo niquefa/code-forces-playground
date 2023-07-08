@@ -220,7 +220,7 @@ RunSolution() {
   if [ "$Lang" = "go" ]; then
     go run "$SolutionFile"
   elif [ "$Lang" = "python" ]; then
-    python "$SolutionFile"
+    python3 "$SolutionFile"
   elif [ "$Lang" = "java" ]; then
     java -cp "build" "main"
   else
