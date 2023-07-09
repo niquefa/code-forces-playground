@@ -69,7 +69,6 @@ int main() {
       //vx2(i,tmp)
       small += tmp;
     }
-
     cout << big - small << endl;
   }
   return 0;
