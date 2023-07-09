@@ -1,28 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <map>
-#include <algorithm>
-#include <set>
-#include <cmath>
-#include <sstream>
-#include <utility>
-#include <cctype>
-#include <numeric>
-#include <queue>
-#include <deque>
-#include <list>
-#include <stack>
-#include <bitset>
-#include <limits>
-#include <ctime>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <iomanip>
-#include <functional>
-#include <inttypes.h>
-#include <fstream>
+#include <bits/stdc++.h>
+
 using namespace std;
 
 #ifdef LOCAL
@@ -230,6 +207,25 @@ template<class T> inline void tmin( T& ans , const T& tmp ){ if( tmp < ans ) ans
 template<class T> inline void tmax( T& ans , const T& a , const T& b ){ if( a > b && a > ans ) ans = a; else if( b > a && b > ans ) ans = b; }
 template<class T> inline void tmin( T& ans , const T& a , const T& b ){ if( a < b && a < ans ) ans = a; else if( b < a && b < ans ) ans = b; }
 
+int find_first_char(const std::string& str, char c) {
+    auto it = std::find(str.begin(), str.end(), c);
+    return it == str.end() ? - 1 : distance(str.begin(), it);
+}
+int find_last_char(const std::string& str, char c) {
+    auto it = std::find_end(str.begin(), str.end(), &c, &c + 1);
+    return it == str.end() ? - 1 : distance(str.begin(), it);
+}
+
+template<typename T> int find_first_element(const std::vector<T>& v, T element) {
+    auto it = std::find(v.begin(), v.end(), element);
+    return it == v.end() ? - 1 : distance(v.begin(), it);
+}
+
+template<typename T> int find_last_element(const std::vector<T>& v, T element) {
+    auto it = std::find_end(v.begin(), v.end(), &element, &element + 1);
+    return it == v.end() ? - 1 : distance(v.begin(), it);
+}
+
 //printf("%.25lf\n",);
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -244,11 +240,12 @@ int main() {
     cin >> n;
     vector<int> a(n);
     for( int i = 0; i < n; ++ i) cin >> a[i];
+
     int m;
     cin >> m;
     vector<int> b(m);
     for( int i = 0; i < m; ++ i) cin >> b[i];
-    
+
     cout << (a.size() == b.size() ? "YES" : "NO") << endl;
   }
   return 0;

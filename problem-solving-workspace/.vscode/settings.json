@@ -98,6 +98,11 @@
     "memory_resource": "cpp",
     "utility": "cpp",
     "stop_token": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "any": "cpp",
+    "barrier": "cpp",
+    "charconv": "cpp",
+    "cuchar": "cpp",
+    "shared_mutex": "cpp"
   }
 }
