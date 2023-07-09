@@ -25,7 +25,6 @@
 #include <fstream>
 using namespace std;
 
-
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
@@ -34,27 +33,27 @@ int main() {
   for( int test = 0; test < test_cases; ++ test ) {
     int n;
     cin >> n;
-    int tmp;
-    bool even_found = false;
-    bool odd_found = false;
-    for( int i = 0; i < n; ++ i) {
-      cin >> tmp;
-      even_found |= (tmp % 2 == 0);
-      odd_found |= (tmp % 2 == 1);
-    } 
-    if( n == 1 ){
-      cout << (odd_found ? "YES" : "NO") << endl;
-      continue;
+    vector<int> v(n);
+    for( int i = 0; i < n; ++ i ) cin >> v[i];
+    vector<bool> visited(n,false);
+    int to_right = 0;
+    int to_left = n-1;
+    bool left_turn = false;
+    while(true){
+      int current_index;
+      if(left_turn){
+        current_index = to_left;
+        --to_left;
+      } else {
+        current_index = to_right;
+        ++to_right;
+      }
+      if(visited[current_index]) break;
+      visited[current_index] = true;
+      cout << v[current_index] << " ";
+      left_turn = !left_turn;
     }
-    if( even_found && odd_found ) {
-      cout << "YES" << endl;
-      continue;
-    }
-    if( !odd_found ) {
-      cout << "NO" << endl;
-      continue;
-    }
-    cout << (n%2==1 ? "YES" : "NO") << endl;
+    cout << endl;
   }
   return 0;
 }

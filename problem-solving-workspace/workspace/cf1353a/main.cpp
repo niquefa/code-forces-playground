@@ -25,36 +25,23 @@
 #include <fstream>
 using namespace std;
 
-
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   int test_cases;
   cin >> test_cases;
   for( int test = 0; test < test_cases; ++ test ) {
-    int n;
-    cin >> n;
-    int tmp;
-    bool even_found = false;
-    bool odd_found = false;
-    for( int i = 0; i < n; ++ i) {
-      cin >> tmp;
-      even_found |= (tmp % 2 == 0);
-      odd_found |= (tmp % 2 == 1);
-    } 
-    if( n == 1 ){
-      cout << (odd_found ? "YES" : "NO") << endl;
+    int n , m;
+    cin >> n >> m;
+    if( n == 1 ) {
+      cout << 0 << endl;
       continue;
     }
-    if( even_found && odd_found ) {
-      cout << "YES" << endl;
+    if( n == 2 ) {
+      cout << m << endl;
       continue;
     }
-    if( !odd_found ) {
-      cout << "NO" << endl;
-      continue;
-    }
-    cout << (n%2==1 ? "YES" : "NO") << endl;
+    cout << 2 * m << endl;
   }
   return 0;
 }
