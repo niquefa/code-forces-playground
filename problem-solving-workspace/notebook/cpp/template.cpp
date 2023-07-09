@@ -240,10 +240,16 @@ int main() {
   int test_cases;
   cin >> test_cases;
   for( int test = 0; test < test_cases; ++ test ) {
-    vector<int> a(3);
-    cin >> a[0] >> a[1] >> a[2];
-    sort(a.begin(), a.end());
-    cout << (a[0]+a[1] == a[2] ? "YES" : "NO") << endl;
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for( int i = 0; i < n; ++ i) cin >> a[i];
+    int m;
+    cin >> m;
+    vector<int> b(m);
+    for( int i = 0; i < m; ++ i) cin >> b[i];
+    
+    cout << (a.size() == b.size() ? "YES" : "NO") << endl;
   }
   return 0;
 }
