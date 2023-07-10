@@ -40,8 +40,8 @@ using namespace std;
 #define isconsonant(car) (string("bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ").find(car)!=string::npos)
 #define isleap(a)        (((a%4==0)&&(a%100!=0))||(a%400==0))
 #define isvowel(car)     (string("aeiouAEIOU").find(car)!=string::npos)
-#define ispow2(v)        (!(v & (v - 1)) && v)//Es n potencia de 2? 0 NO se considera potencia de 2
-#define ispow22(v)       ((v & (v - 1)) == 0) //Es n potencia de 2? 0 se considera potencia de 2
+#define ispow2(v)        (!(v & (v - 1)) && v)//is power of 2? 0 is not considered power of 2
+#define ispow22(v)       ((v & (v - 1)) == 0) //is power of 2? 0 is considered power of 2
 #define maxel(c)         (*std::max_element((c).begin(),(c).end()))
 #define maxelf(c,fun)    (*std::max_element((c).begin(),(c).end(),fun))
 #define minel(c)         (*std::min_element((c).begin(),(c).end()))
@@ -58,7 +58,6 @@ using namespace std;
 #define zero(a)          memset(a,0,sizeof(a));
 #define mone(a)          memset(a,-1,sizeof(a));
 #define allf(a)          memset(a,false,sizeof(a));
-                                                //Para     10011010100010000 = 79120
 
 
 #define vset(c)			     cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<*it<<" | ";cout << endl;
@@ -97,7 +96,7 @@ template<class T> inline T sqr (T b){return(b*b);}
 template<class T,class E> T fpow( T b , E e){if(e<0) return 1/fpow(b,-e);if(e==0)return 1;else if(e%2==0)return sqr(fpow(b,e/2));else return b*fpow(b,e-1);}
 unsigned long long fmp(unsigned long long b, unsigned long long e, unsigned long long m){unsigned long long r = 1;while (e > 0) {if ((e & 1) == 1) r = (r * b) % m;e >>= 1;b = (b * b) % m;}return r;}
 
-//unik(a);unik(b); a\F1adir lo anterior si no hay segudidad de que no hay elementos repetidos, si hay repetidos, quita de a, tantos elementos X como haya en b
+//unik(a);unik(b); Could be needed if repeated elements. If repeated works as multiset.
 //set_intersection,set_union,set_symmetric_difference
 vector<int> ocd(vector<int>& a,vector<int>& b){  vector<int> c(a.size()+b.size());   sort(a.begin(),a.end());   sort(b.begin(),b.end());c.resize(int(set_difference(a.begin(),a.end(),b.begin(),b.end(),c.begin())-c.begin()));return c;}
 
@@ -179,6 +178,7 @@ inline bool is_off( const long long& mask, const int& bit ){return (mask & (1LL 
 
 #define	b_is_proper_subset_of_a(a,b)      (  (a!=b) && ( (a&b)==b )  )
 #define	b_is_subset_of_a(a,b)             ( (a&b)==b )
+                                                //Para     10011010100010000 = 79120
 #define lzeros(n)        __builtin_clz(n)       //Cantidad de ceros a la izquierda 15
 #define ones(n)          __builtin_popcount(n)  //Cantidad de unos en n            6
 #define rzeros(n)        __builtin_ctz(n)       //Cantidad de ceros a la derecha   4
