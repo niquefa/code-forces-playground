@@ -103,6 +103,10 @@
     "barrier": "cpp",
     "charconv": "cpp",
     "cuchar": "cpp",
-    "shared_mutex": "cpp"
+    "shared_mutex": "cpp",
+    "filesystem": "cpp",
+    "span": "cpp",
+    "ranges": "cpp",
+    "stacktrace": "cpp"
   }
 }

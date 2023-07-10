@@ -18,7 +18,7 @@ using namespace std;
 #define fturno(n)        for(int turno=0;turno<n;++turno)
 #define fbit(n)          for(int bit=0;bit<n;++bit)
 #define all(x)           (x).begin(),(x).end()
-#define sr(x)            std::sort((x).begin(),(x).end());
+#define sr(x)            sort((x).begin(),(x).end());
 #define pb               push_back
 #define mp(x,y)          make_pair(x,y)
 #define fs               first
@@ -28,13 +28,13 @@ using namespace std;
 #define fori(i,n)        for(int i=0;i<n;++i)
 #define foro(i,M,m)      for(int i=M;i>=m;--i)
 #define foru(i,n)        for(int i=1;i<=n;++i)
-#define accum(c)         std::accumulate((c).begin(),(c).end(),0)
-#define countx(c,x)      std::count((c).begin(),(c).end(),x)
+#define accum(c)         accumulate((c).begin(),(c).end(),0)
+#define countx(c,x)      count((c).begin(),(c).end(),x)
 #define EPS              (1e-10)
 #define fall(c,f)        for_each((c).begin(),(c).end(),f);
 #define haschar(s,car)   (s.find(car)!=string::npos)
-#define iminel(c)        ((std::min_element((c).begin(),(c).end()))-(c).begin())
-#define iminelf(c,fun)   ((std::min_element((c).begin(),(c).end(),fun))-(c).begin())
+#define iminel(c)        ((min_element((c).begin(),(c).end()))-(c).begin())
+#define iminelf(c,fun)   ((min_element((c).begin(),(c).end(),fun))-(c).begin())
 #define incontainer(c,x) ((c).find(x)!=(c).end())
 #define invector(c,x)    (find((c).begin(),(c).end(),x)!=(c).end())
 #define isconsonant(car) (string("bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ").find(car)!=string::npos)
@@ -42,16 +42,16 @@ using namespace std;
 #define isvowel(car)     (string("aeiouAEIOU").find(car)!=string::npos)
 #define ispow2(v)        (!(v & (v - 1)) && v)//is power of 2? 0 is not considered power of 2
 #define ispow22(v)       ((v & (v - 1)) == 0) //is power of 2? 0 is considered power of 2
-#define maxel(c)         (*std::max_element((c).begin(),(c).end()))
-#define maxelf(c,fun)    (*std::max_element((c).begin(),(c).end(),fun))
-#define minel(c)         (*std::min_element((c).begin(),(c).end()))
-#define minelf(c,fun)    (*std::min_element((c).begin(),(c).end(),fun))
+#define maxel(c)         (*max_element((c).begin(),(c).end()))
+#define maxelf(c,fun)    (*max_element((c).begin(),(c).end(),fun))
+#define minel(c)         (*min_element((c).begin(),(c).end()))
+#define minelf(c,fun)    (*min_element((c).begin(),(c).end(),fun))
 #define mset(a,x)        memset(a,x,sizeof(a));
 #define ok(f,c,F,C)      (f>=0&&c>=0&&c<C&&f<F)
 #define pnext(c)         next_permutation((c).begin(),(c).end())
 #define pprev(c)         prev_permutation((c).begin(),(c).end())
-#define rev(x)           std::reverse((x).begin(),(x).end());
-#define rsor(x)          std::sort((x).rbegin(),(x).rend());
+#define rev(x)           reverse((x).begin(),(x).end());
+#define rsor(x)          sort((x).rbegin(),(x).rend());
 #define swapd(a,b)       (((a)^=(b)),((b)^=(a)),((a)^=(b)));
 #define to_lower(s)      transform((s).begin(),(s).end(),(s).begin(),::tolower);
 #define to_upper(s)      transform((s).begin(),(s).end(),(s).begin(),::toupper);
@@ -178,17 +178,17 @@ inline bool is_off( const long long& mask, const int& bit ){return (mask & (1LL 
 
 #define	b_is_proper_subset_of_a(a,b)      (  (a!=b) && ( (a&b)==b )  )
 #define	b_is_subset_of_a(a,b)             ( (a&b)==b )
-                                                //Para     10011010100010000 = 79120
-#define lzeros(n)        __builtin_clz(n)       //Cantidad de ceros a la izquierda 15
-#define ones(n)          __builtin_popcount(n)  //Cantidad de unos en n            6
-#define rzeros(n)        __builtin_ctz(n)       //Cantidad de ceros a la derecha   4
-#define lzerosL(n)       __builtin_clzll(n)     //Cantidad de ceros a la izquierda 47
-#define onesL(n)         __builtin_popcountll(n)//Cantidad de unos en n            6
-#define rzerosL(n)       __builtin_ctzll(n)     //Cantidad de ceros a la derecha   4
+                                                //For     10011010100010000 = 79120
+#define lzeros(n)        __builtin_clz(n)       //0 to the left   >> 15
+#define ones(n)          __builtin_popcount(n)  //ones            >>  6
+#define rzeros(n)        __builtin_ctz(n)       //0 to the right  >>  4
+#define lzerosL(n)       __builtin_clzll(n)     //0 to the left   >> 47
+#define onesL(n)         __builtin_popcountll(n)//ones            >>  6
+#define rzerosL(n)       __builtin_ctzll(n)     //0 to the right  >>  4
 #define two_to(n)        (1<<(n))
 #define two_toll(n)      ((1(unsigned long long))<<(n))
-#define contains(s,x)    ((s&(1<<(x)))>0)                        //s contiene a x?, para s=...1010001[2], x=3[10], true, x=2, false
-#define containsl(s,x)   ((s&((1(unsigned long long))<<(n)))>0)  //s contiene a x?,
+#define contains(s,x)    ((s&(1<<(x)))>0)                        //s contains x?, For s=...1010001[2], x=3[10], true, x=2, false
+#define containsl(s,x)   ((s&((1(unsigned long long))<<(n)))>0)  //s contains x?,
 
 template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 vector<vector<bool> > get_adj_matrix( const vector<string>& m ){vector<vector<bool> > ans;for( int i = 0; i < m.size(); ++ i ){vector<bool> v;for( int j = 0; j < m[i].size(); ++ j )v.push_back(m[i][j] == 'Y');ans.push_back(v);}return ans;}
@@ -207,23 +207,41 @@ template<class T> inline void tmin( T& ans , const T& tmp ){ if( tmp < ans ) ans
 template<class T> inline void tmax( T& ans , const T& a , const T& b ){ if( a > b && a > ans ) ans = a; else if( b > a && b > ans ) ans = b; }
 template<class T> inline void tmin( T& ans , const T& a , const T& b ){ if( a < b && a < ans ) ans = a; else if( b < a && b < ans ) ans = b; }
 
-int find_first_char(const std::string& str, char c) {
-    auto it = std::find(str.begin(), str.end(), c);
+int find_first_char(const string& str, char c) {
+    auto it = find(str.begin(), str.end(), c);
     return it == str.end() ? - 1 : distance(str.begin(), it);
 }
-int find_last_char(const std::string& str, char c) {
-    auto it = std::find_end(str.begin(), str.end(), &c, &c + 1);
+int find_last_char(const string& str, char c) {
+    auto it = find_end(str.begin(), str.end(), &c, &c + 1);
     return it == str.end() ? - 1 : distance(str.begin(), it);
 }
 
-template<typename T> int find_first_element(const std::vector<T>& v, T element) {
-    auto it = std::find(v.begin(), v.end(), element);
+template<typename T> int find_first_element(const vector<T>& v, T element) {
+    auto it = find(v.begin(), v.end(), element);
     return it == v.end() ? - 1 : distance(v.begin(), it);
 }
 
-template<typename T> int find_last_element(const std::vector<T>& v, T element) {
-    auto it = std::find_end(v.begin(), v.end(), &element, &element + 1);
+template<typename T> int find_last_element(const vector<T>& v, T element) {
+    auto it = find_end(v.begin(), v.end(), &element, &element + 1);
     return it == v.end() ? - 1 : distance(v.begin(), it);
+}
+
+int find_first_substring(const string& str, const string& substr) {
+    size_t found = str.find(substr);
+    return found != string::npos ? static_cast<int>(found) : -1; 
+}
+
+int find_last_substring(const string& str, const string& substr) {
+    size_t found = str.rfind(substr);
+    return found != string::npos ? static_cast<int>(found) : -1; 
+}
+
+template <typename T> int index_max_element(const vector<T>& vec) {
+    return vec.empty() ? -1 : distance(vec.begin(), max_element(vec.begin(), vec.end()));
+}
+
+template <typename T> int index_min_element(const vector<T>& vec) {
+    return vec.empty() ? -1 : distance(vec.begin(), min_element(vec.begin(), vec.end()));
 }
 
 //printf("%.25lf\n",);
