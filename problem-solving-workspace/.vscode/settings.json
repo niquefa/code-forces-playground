@@ -108,5 +108,6 @@
     "span": "cpp",
     "ranges": "cpp",
     "stacktrace": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

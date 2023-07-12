@@ -35,16 +35,12 @@ int main() {
       index1 = n/2-1;
     solution[index1] = 1;
     solution[0] = 2;
-    solution[n-1] = 5;
+    solution[n-1] = 3;
 
-    int next_number = 3;
-    for( int i = 0;i < n; ++ i ) {
-      if( solution[i] == 0 ) {
+    int next_number = 4;
+    for( int i = 0;i < n; ++ i )
+      if( solution[i] == 0 )
         solution[i] = next_number++;
-        if(next_number == 5 )
-          ++ next_number;
-      }
-    }
     for( int i = 0; i < n; ++ i ) 
       cout << solution[i] << " ";
     cout << endl;

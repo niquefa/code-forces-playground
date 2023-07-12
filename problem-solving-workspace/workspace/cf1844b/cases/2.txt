@@ -1,0 +1,39 @@
+
+
+Case n = 5: 
+a :  [1|2|3|4|5]
+8
+Solution with max primality 8
+a :  [2|4|1|3|5]
+p :  [1|1|1|0|0]
+
+a :  [2|4|1|5|3]
+p :  [1|1|1|0|0]
+
+a :  [2|5|1|4|3]
+p :  [1|0|1|1|0]
+
+a :  [3|4|1|2|5]
+p :  [0|1|1|1|0]
+
+a :  [3|4|1|5|2]
+p :  [0|1|1|0|1]
+
+a :  [3|5|1|4|2]
+p :  [0|0|1|1|1]
+
+a :  [5|2|1|4|3]
+p :  [0|1|1|1|0]
+
+a :  [5|3|1|4|2]
+p :  [0|0|1|1|1]
+
+firstones :  [2|4]
+secondones :  [3|5]
+FILLING 
+all_p :  [2|4|3|5]
+{ going_up = 3, going_down = 1, p_index = 0, going_up_turn = 1 }
+{ going_up = 4, going_down = 1, p_index = 1, going_up_turn = 0 }
+{ going_up = 4, going_down = 0, p_index = 2, going_up_turn = 1 }
+{ going_up = 5, going_down = 0, p_index = 3, going_up_turn = 0 }
+5 4 1 2 3 
