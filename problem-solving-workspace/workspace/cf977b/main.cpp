@@ -9,11 +9,9 @@ int main() {
   string s;
   cin >> s;
   string answer = s.substr(0,2);
-  //cout << s << endl;
   int answer_score = 0;
   for( int i = 0; i < s.size() - 1 ; ++ i ) {
     string candidate = s.substr(i,2);
-    //cout << "Candidate " << candidate << endl;
     int candidate_score = 0;
     for( int j = 0; j < s.size() - 1 ; ++ j ) { 
       if( s[j] == candidate[0] && s[j+1] == candidate[1] ) {
