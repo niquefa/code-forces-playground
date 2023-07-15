@@ -31,8 +31,7 @@ using namespace std;
 #define debug(...) 42
 #endif
 
-template<class T>
-inline void squeeze(vector <pair <T, int> > &M, T &n, T p) {
+template<class T> inline void squeeze(vector <pair <T, int> > &M, T &n, T p) {
   int C = 0;
   for (; n % p == 0; n /= p) ++C;
   if (C != 0) M.push_back(make_pair(p, C));
