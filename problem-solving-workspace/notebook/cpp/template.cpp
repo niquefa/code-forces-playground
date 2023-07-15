@@ -253,7 +253,7 @@ int main() {
   cin.tie(0);
   int test_cases;
   cin >> test_cases;
-  for( int test = 0; test < test_cases; ++ test ) {
+  for( int current_test = 0; current_test < test_cases; ++ current_test ) {
     int n;
     cin >> n;
     vector<int> a(n);

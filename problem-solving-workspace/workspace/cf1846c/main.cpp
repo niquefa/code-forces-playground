@@ -34,23 +34,23 @@ int main() {
   for( int test = 0; test < test_cases; ++ test ) {
     int n, m, h;
     cin >> n >> m >> h;
-    vector<pair<pair<int,int>, int > > p;
+    vector<pair<pair<long long,long long>, int > > p;
     
     for( int i = 0; i < n; ++i ) {
-      vector<int> minutes(m);
+      vector<long long> minutes(m);
       for( int j = 0; j < m; ++ j)
         cin >> minutes[j];
       sort(minutes.begin(), minutes.end());
-      //va(minutes)
-      vector<int> solved_times;
-      int minutes_so_far = 0;
+      // va(minutes)
+      vector<long long> solved_times;
+      long long minutes_so_far = 0;
       for( int j = 0; j < m; ++ j) {
         minutes_so_far += minutes[j];
         solved_times.push_back(minutes_so_far);
       }
       //va(solved_times)
-      int penalty = 0;
-      int solved = 0;
+      long long penalty = 0;
+      long long solved = 0;
       for( int j = 0; j < m; ++ j ) {
         if( solved_times[j] <= h ) {
           penalty += solved_times[j];
