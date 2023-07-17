@@ -7,7 +7,7 @@ using namespace std;
 #else
 #define debug(...) 42
 #endif
-
+// dp dynamic programming memoization
 const int MAXN = 200002;
 int n;
 int a[MAXN];
