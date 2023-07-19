@@ -67,7 +67,7 @@ void fill_sets() {
     if( father_of[i] != -1 && adj[i].size() == 1 )
       leafs[i] = true;
 }
-
+// graph problems bfs dp memoization dynamic programming
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
