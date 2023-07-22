@@ -8,89 +8,23 @@ using namespace std;
 #define debug(...) 42
 #endif
 
-#define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
+#define va(c)            cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"]\n":"|");
 
-#define vx(x)            cerr<<"{ " << #x << " = "<<x<<" }"<<endl;
-#define vx2(x,y)         cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<" }"<<endl;
-#define vx3(x,y,z)       cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<" }"<<endl;
-#define vx4(x,y,z,w)     cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<" }"<<endl;
-#define vx5(x,y,z,w,q)   cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<", " << #q << " = "<<q<<" }"<<endl;
-#define vx6(x,y,z,w,q,p) cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<", " << #q << " = "<<q<<", " << #p << " = "<<p<<" }"<<endl;
+#define vx(x)            cout<<"{ " << #x << " = "<<x<<" }"<<endl;
+#define vx2(x,y)         cout<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<" }"<<endl;
+#define vx3(x,y,z)       cout<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<" }"<<endl;
+#define vx4(x,y,z,w)     cout<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<" }"<<endl;
+#define vx5(x,y,z,w,q)   cout<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<", " << #q << " = "<<q<<" }"<<endl;
+#define vx6(x,y,z,w,q,p) cout<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<", " << #q << " = "<<q<<", " << #p << " = "<<p<<" }"<<endl;
 
-template<class T> string grow_to_size( T element , int size_to_get , const string& str_to_append = " " ){
-  string answer = to_string(element);
-  while( answer.size() < size_to_get )
-    answer = str_to_append + answer;
-  return answer;
-}
-
-template<class T> void print_vector(const vector<T>& c, const string& vector_name = "") {
-  cerr << (!vector_name.empty() ? vector_name : "Vector : ") << "[ ";
-  for(auto it = c.begin(); it != c.end(); ++it) {
-    if (it != c.begin())
-      cerr << " , ";
-    cerr << *it;
-  }
-  cerr << " ] " << c.size() << " Elements." << endl;
-}
-
-template<class T> void print_set(const set<T>& c, const string& set_name = "") {
-  cerr << (!set_name.empty() ? set_name : "   Set : ") << "{ ";
-  for(auto it = c.begin(); it != c.end(); ++it) {
-    if (it != c.begin())
-      cerr << " , ";
-    cerr << *it;
-  }
-  cerr << " } " << c.size() << " Elements." << endl;
-}
-
-template<class K, class V> void print_map(const map<K, V>& m, const string& map_name = "") {
-  cerr << (!map_name.empty() ? map_name : "   Map :") << " {" << endl;
-
-  int max_key_length = 0;
-  int max_value_length = 0;
-  for(auto it = m.begin(); it != m.end(); ++it)
-    max_key_length = max(max_key_length, (int)to_string(it->first).size()),
-    max_value_length = max(max_value_length, (int)to_string(it->second).size());
-
-  for(auto it = m.begin(); it != m.end(); ++it) {
-    cerr << " " <<  grow_to_size(it->first, max_key_length + 1) << " -> " << grow_to_size(it->second, max_value_length + 1) << " ";
-    for( int i = 0; i < it->second; ++ i ) cerr << "*";
-    cerr << endl;
-  }
-  
-  cerr << "} " << m.size() << " <K,V> pairs." << endl;
-}
-
-template<class T> void print_stack( const stack<T>& s, const string& stack_name = "" )
-{
-  stack<T> ss = s;
-  deque<T> v;
-  while( !ss.empty() ){
-    v.push_front(ss.top());
-    ss.pop();
-  }
-  cerr << "stack: ";
-  va(v)
-}
-template<class T> void print_queue( const queue<T>& s )
-{
-  queue<T> ss = s;
-  deque<T> v;
-  while( !ss.empty() ){
-    v.push_front(ss.front());
-    ss.pop();
-  }
-  cerr << "queue: ";
-  va(v)
-}
-
-
-
+#define vset(c)			     cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<*it<<" | ";cout << endl;
+#define vmap(c)			     cout<<#c << " :  ";for(typeof((c).begin()) it=(c).begin();it!=(c).end();++it)cout<<" ("<<it->first<<","<<it->second<<") |";cout << endl;
 #define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
 #define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
 #define vaa(c)           cout<<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
 #define vaat(c,F,C)      cout<<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
+template<class T> void sstack( const stack<T>& s ){stack<T> ss = s;deque<T> v;while( !ss.empty() ){v.push_front(ss.top());ss.pop();}cout << "stack: ";va(v)}
+template<class T> void squeue( const queue<T>& s ){queue<T> ss = s;deque<T> v;while( !ss.empty() ){v.push_front(ss.front());ss.pop();}cout << "queue: ";va(v)}
 
 
 #define sz               size()
@@ -179,6 +113,7 @@ inline unsigned long int todecimal( string n , int b ){return strtoul(n.c_str(),
 const string DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 long long todec(string n, int b){long long r = 0,m = 1;for (int i = n.length() - 1; i >= 0; --i)r += (long long)DIGITS.find(n[i]) * m,m *= (long long)b;return r;}
 template<class T> string tobase(T number, int base, const int& length){if( number == 0 )return "0";string r = "";while (number != 0)r = tostring (DIGITS[number % base]) + r,number /= base;return r;}
+string norm( string s , int t , char c ){string r = s;while( r.size() < t )r = tostring(c) + r;return r;}
 
 template<class T> vector<T> strtovt(string s) { vector<T> ret;istringstream f(s); T tmp; while (f >> tmp) ret.push_back(tmp);return ret;}
 vector<string> tokenize(const string& str, const string& d = " "){vector <string> t;int up  = str.find_first_not_of(d, 0);int pos = str.find_first_of(d, up);while (string::npos != pos || string::npos != up){t.push_back(str.substr(up, pos - up));up = str.find_first_not_of(d, pos);pos = str.find_first_of(d, up);}return t;}
@@ -315,35 +250,36 @@ template <typename T> int index_min_element(const vector<T>& vec) {
 ////////////////////////////////////////////////////////////////////////////////
 
 //g++ hello.cc && ./a.out < t.in
-
-void solve() {
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for( int i = 0; i < n; ++ i) cin >> a[i];
-  
-  print_vector(a);
-  sort(a.begin(), a.end());
-  va(a);
-
-  set<int> s(a.begin(), a.end());
-  print_set(s);
-  
-  map<int,int> f = get_frecuencies(a);
-  print_map(f);
-
-  cout << (a.size() ? "YES" : "NO") << endl;
-}
-
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
+    
   int test_cases;
   cin >> test_cases;
   for( int current_test = 1; current_test <= test_cases; ++ current_test ) {
-    cerr << "\nTest case " << current_test << endl;
-    solve();
+    long long a_digits, b_digits, c_digits, k;
+    cin >> a_digits >> b_digits >> c_digits >> k;
+    long long solutions_found = 0;
+    long long first_a = pow(10, a_digits-1);
+    long long last_a = pow(10, a_digits) - 1;
+    long long first_b = pow(10, b_digits-1);
+    long long last_b = pow(10, b_digits) - 1;
+    long long solutions = 0;
+
+    for( long long a = first_a; a <= last_a; ++ a ) {
+      for( long long b = first_b; b <= last_b; ++ b ) {
+        long long c = a + b;
+        if( c == a + b ) {
+          ++solutions
+          if( solution == k ) {
+            cout << a << " + " << b << " = " << c << "\n";
+            break;
+          }
+        }
+
+      }
+    }
   }
   return 0;
 }
