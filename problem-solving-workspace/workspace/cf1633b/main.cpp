@@ -35,8 +35,8 @@ void solve() {
     if( s[i] == '0' ) s0[i] ++;
     else s1[i] ++;
   }
-  print_vector(s0);
-  print_vector(s1);
+  //print_vector(s0);
+  //print_vector(s1);
   int ans = 0;
   for( int i = 0; i < s.size(); ++ i ) {
     if( s0[i] != s1[i] ) ans = max( ans, min( s0[i], s1[i] ));

@@ -313,6 +313,7 @@ template <typename T> int index_min_element(const vector<T>& vec) {
 //g++ hello.cc && ./a.out < t.in
 
 template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+
 map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 void solve() {
