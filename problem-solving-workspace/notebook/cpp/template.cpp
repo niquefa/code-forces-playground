@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 #ifdef LOCAL
 #include "debug.h"
 #else
@@ -9,6 +8,12 @@ using namespace std;
 #endif
 
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
+
+#define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
+#define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
+#define vaa(c)           cout<<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
+#define vaat(c,F,C)      cout<<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
+
 
 #define vx(x)            cerr<<"{ " << #x << " = "<<x<<" }"<<endl;
 #define vx2(x,y)         cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<" }"<<endl;
@@ -84,14 +89,6 @@ template<class T> void print_queue( const queue<T>& s )
   cerr << "queue: ";
   va(v)
 }
-
-
-
-#define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
-#define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
-#define vaa(c)           cout<<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
-#define vaat(c,F,C)      cout<<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
-
 
 #define sz               size()
 #define fi(n)            for(int i=0;i<n;++i)
@@ -257,7 +254,6 @@ inline bool is_off( const long long& mask, const int& bit ){return (mask & (1LL 
 #define contains(s,x)    ((s&(1<<(x)))>0)                        //s contains x?, For s=...1010001[2], x=3[10], true, x=2, false
 #define containsl(s,x)   ((s&((1(unsigned long long))<<(n)))>0)  //s contains x?,
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 vector<vector<bool> > get_adj_matrix( const vector<string>& m ){vector<vector<bool> > ans;for( int i = 0; i < m.size(); ++ i ){vector<bool> v;for( int j = 0; j < m[i].size(); ++ j )v.push_back(m[i][j] == 'Y');ans.push_back(v);}return ans;}
 
 template<class T> inline T fmax( const T& a , const T& b ){return a > b ? a: b;}
@@ -316,6 +312,9 @@ template <typename T> int index_min_element(const vector<T>& vec) {
 
 //g++ hello.cc && ./a.out < t.in
 
+template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+
 void solve() {
   int n;
   cin >> n;
@@ -336,6 +335,8 @@ void solve() {
 }
 
 int main() {
+  auto start_execution_time = std::chrono::high_resolution_clock::now();
+
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
@@ -345,5 +346,9 @@ int main() {
     cerr << "\nTest case " << current_test << endl;
     solve();
   }
+  auto finish_execution_time = std::chrono::high_resolution_clock::now();
+
+  chrono::duration<double, std::milli> elapsed = start_execution_time - start_execution_time;
+  cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }

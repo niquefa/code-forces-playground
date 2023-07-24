@@ -107,7 +107,13 @@
     "filesystem": "cpp",
     "span": "cpp",
     "ranges": "cpp",
-    "stacktrace": "cpp"
+    "stacktrace": "cpp",
+    "coroutine": "cpp",
+    "latch": "cpp",
+    "expected": "cpp",
+    "source_location": "cpp",
+    "spanstream": "cpp",
+    "syncstream": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
