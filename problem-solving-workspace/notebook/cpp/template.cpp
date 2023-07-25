@@ -312,6 +312,12 @@ template <typename T> int index_min_element(const vector<T>& vec) {
 
 //g++ hello.cc && ./a.out < t.in
 
+void print_solution( const vector<int>& solution_vector ) {
+  for( int i = 0; i < solution_vector.size(); ++ i) 
+    cout << (i > 0 ? " " : "") << solution_vector[i];
+  cout << endl;
+}
+
 template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
@@ -349,7 +355,7 @@ int main() {
   }
   auto finish_execution_time = std::chrono::high_resolution_clock::now();
 
-  chrono::duration<double, std::milli> elapsed = start_execution_time - start_execution_time;
+  chrono::duration<double, std::milli> elapsed = finish_execution_time - start_execution_time;
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }

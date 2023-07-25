@@ -1,19 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print_solution( const vector<int>& solution_vector ) {
-  for( int i = 0; i < solution_vector.size(); ++ i) 
-    cout << (i > 0 ? " " : "") << solution_vector[i];
-  cout << endl;
-}
+#ifdef LOCAL
+#include "debug.h"
+#else
+#define debug(...) 42
+#endif
+
+#define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
 
 void solve() {
   int n;
   cin >> n;
-  vector<int> arr(n);
-  for( int i = 0; i < n; ++ i) cin >> arr[i];
-  sort(arr.begin(), arr.end(), [](int a, int b){ return (a % 2 > b % 2); });
-  print_solution(arr);
+  vector<int> a(n);
+  for( int i = 0; i < n; ++ i) cin >> a[i];
+  long long total = accumulate(a.begin(), a.end(), 0LL);
+  cout << ( total / n + (total%n == 0 ? 0 : 1) ) << endl;
+  
 }
 
 int main() {
@@ -30,7 +33,7 @@ int main() {
   }
   auto finish_execution_time = std::chrono::high_resolution_clock::now();
 
-  chrono::duration<double, std::milli> elapsed = finish_execution_time - start_execution_time;
+  chrono::duration<double, std::milli> elapsed = start_execution_time - start_execution_time;
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }

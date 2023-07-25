@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print_solution( const vector<int>& solution_vector ) {
-  for( int i = 0; i < solution_vector.size(); ++ i) 
-    cout << (i > 0 ? " " : "") << solution_vector[i];
-  cout << endl;
-}
-
+#ifdef LOCAL
+#include "debug.h"
+#else
+#define debug(...) 42
+#endif
 void solve() {
-  int n;
-  cin >> n;
-  vector<int> arr(n);
-  for( int i = 0; i < n; ++ i) cin >> arr[i];
-  sort(arr.begin(), arr.end(), [](int a, int b){ return (a % 2 > b % 2); });
-  print_solution(arr);
+  int a, b;
+  cin >> a >> b;
+  cout << (a^b) << endl;
 }
 
 int main() {
