@@ -46,7 +46,7 @@ int main() {
   int test_cases = 1;
   cin >> test_cases;
   for( int current_test = 1; current_test <= test_cases; ++ current_test ) {
-    cerr << "\nTest case " << current_test << endl;
+    //cerr << "\nTest case " << current_test << endl;
     solve();
   }
   auto finish_execution_time = std::chrono::high_resolution_clock::now();
