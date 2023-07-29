@@ -28,31 +28,18 @@ int main() {
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
-long long f( const long long a, const long long x ) {
-  return x / a + x % a;
-}
 void solve() {
-  long long l, r, a;
-  cin >> l >> r >> a;
-  long long answer = 0 ;
-  if( r - l <= 600 ) {
-    for( long long x = l; x <= r; ++ x ) 
-      answer = max( answer, f( a, x ) );
-    
-  } else { 
-    vector<long long> x;
-    long long mid = ( l + r ) / 2;
-    for( long long c = 0; c < 100; ++ c) { 
-      x.push_back( l + c );
-      x.push_back( r - c );
-      x.push_back( mid + c );
-      x.push_back( mid - c );
-    }
-    x.push_back(r - r%a - 1);
-    for( auto& e : x ) 
-      if( l <= e && e <= r)
-        answer = max( answer, f( a, e ) );
+  int n = 4;
+  vector<int> a(n);
+  for( int i = 0; i < n; ++ i) cin >> a[i];
+  int accum = accumulate(a.begin(), a.end(), 0);  
+  if( accum == 0 ) {
+    cout << 0 << endl;
+    return;
   }
-  
-  cout << answer << endl;
+  if( accum == 4 ) {
+    cout << 2 << endl;
+    return;
+  }
+  cout << 1 << endl;
 }

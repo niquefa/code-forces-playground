@@ -67,6 +67,21 @@ template<class K, class V> void print_map(const map<K, V>& m, const string& map_
   cerr << "} " << m.size() << " <K,V> pairs." << endl;
 }
 
+void print_char_map(const map<char, int>& m, const string& map_name = "") {
+  cerr << (!map_name.empty() ? map_name : "CharMap:") << " {" << endl;
+  int max_value_length = 0;
+  for(auto it = m.begin(); it != m.end(); ++it)
+    max_value_length = max(max_value_length, (int)to_string(it->second).size());
+
+  for(auto it = m.begin(); it != m.end(); ++it) {
+    cerr << " " << (it->first) << " -> " << grow_to_size(it->second, max_value_length + 1) << " ";
+    for( int i = 0; i < it->second; ++ i ) cerr << "*";
+    cerr << endl;
+  }
+  cerr << "} " << m.size() << " <char,int> pairs." << endl;
+}
+
+
 template<class T> void print_stack( const stack<T>& s, const string& stack_name = "" )
 {
   stack<T> ss = s;
@@ -322,25 +337,7 @@ template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> an
 
 map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
-void solve() {
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for( int i = 0; i < n; ++ i) cin >> a[i];
-  
-  print_vector(a);
-  sort(a.begin(), a.end());
-  va(a);
-
-  set<int> s(a.begin(), a.end());
-  print_set(s);
-  
-  map<int,int> f = get_frecuencies(a);
-  print_map(f);
-
-  cout << (a.size() ? "YES" : "NO") << endl;
-}
-
+void solve();
 int main() {
   auto start_execution_time = std::chrono::high_resolution_clock::now();
 
@@ -358,4 +355,22 @@ int main() {
   chrono::duration<double, std::milli> elapsed = finish_execution_time - start_execution_time;
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
+}
+void solve() {
+  int n;
+  cin >> n;
+  vector<int> a(n);
+  for( int i = 0; i < n; ++ i) cin >> a[i];
+  
+  print_vector(a);
+  sort(a.begin(), a.end());
+  va(a);
+
+  set<int> s(a.begin(), a.end());
+  print_set(s);
+  
+  map<int,int> f = get_frecuencies(a);
+  print_map(f);
+
+  cout << (a.size() ? "YES" : "NO") << endl;
 }
