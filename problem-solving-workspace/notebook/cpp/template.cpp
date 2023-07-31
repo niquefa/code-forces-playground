@@ -349,6 +349,13 @@ void print_solution( const vector<int>& solution_vector ) {
   cout << endl;
 }
 
+template<class K, class V> set<K> key_set(const map<K, V>& m) {
+    set<K> keys;
+    for (const auto& pair : m) 
+        keys.insert(pair.first);
+    return keys;
+}
+
 template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
