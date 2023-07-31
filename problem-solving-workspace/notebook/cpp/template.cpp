@@ -81,6 +81,22 @@ void print_char_map(const map<char, int>& m, const string& map_name = "") {
   cerr << "} " << m.size() << " <char,int> pairs." << endl;
 }
 
+template<class K, class V> void print_set_of_pairs(const set<pair<K,V> >& c, const string& set_name = "") {
+  cerr << (!set_name.empty() ? set_name : "PairSet: ") << "{ " << endl;
+
+  int max_key_length = 0;
+  int max_value_length = 0;
+  for(auto it = c.begin(); it != c.end(); ++it)
+    max_key_length = max(max_key_length, (int)to_string(it->first).size()),
+    max_value_length = max(max_value_length, (int)to_string(it->second).size());
+
+  for(auto it = c.begin(); it != c.end(); ++it) {
+    if (it != c.begin())
+      cerr << endl;
+    cerr << " " <<  grow_to_size(it->first, max_key_length + 1) << " <>" << grow_to_size(it->second, max_value_length + 1);
+  }
+  cerr << endl << "} " << c.size() << " Pairs." << endl;
+}
 
 template<class T> void print_stack( const stack<T>& s, const string& stack_name = "" )
 {
@@ -144,7 +160,7 @@ template<class T> void print_queue( const queue<T>& s )
 #define minel(c)         (*min_element((c).begin(),(c).end()))
 #define minelf(c,fun)    (*min_element((c).begin(),(c).end(),fun))
 #define mset(a,x)        memset(a,x,sizeof(a));
-#define ok(f,c,F,C)      (f>=0&&c>=0&&c<C&&f<F)
+#define ok(r,c,R,C)      ( r>=0 && c>=0 && c<C && r<R )
 #define pnext(c)         next_permutation((c).begin(),(c).end())
 #define pprev(c)         prev_permutation((c).begin(),(c).end())
 #define rev(x)           reverse((x).begin(),(x).end());
@@ -339,7 +355,7 @@ map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int
 
 void solve();
 int main() {
-  auto start_execution_time = std::chrono::high_resolution_clock::now();
+  auto start_execution_time = chrono::high_resolution_clock::now();
 
   ios_base::sync_with_stdio(false);
   cin.tie(0);
@@ -350,9 +366,9 @@ int main() {
     cerr << "\nTest case " << current_test << endl;
     solve();
   }
-  auto finish_execution_time = std::chrono::high_resolution_clock::now();
+  auto finish_execution_time = chrono::high_resolution_clock::now();
 
-  chrono::duration<double, std::milli> elapsed = finish_execution_time - start_execution_time;
+  chrono::duration<double, milli> elapsed = finish_execution_time - start_execution_time;
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
