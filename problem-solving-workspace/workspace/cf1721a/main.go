@@ -20,17 +20,22 @@ func assert(f bool) {
 	}
 }
 
-func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
-	}
-
-}
-
 // ----------------------------- TEMPLATE END ----------------------------------
+
+func solve() {
+	var a string
+	scan(&a)
+	var b string
+	scan(&b)
+	var c string = a + b
+	//fmt.Println(c)
+	set := make(map[rune]bool)
+	for _, ch := range c {
+		set[ch] = true
+	}
+	var n int = len(set)
+	fmt.Println(n - 1)
+}
 
 func main() {
 	defer flush()

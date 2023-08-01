@@ -27,7 +27,11 @@ func solve() {
 	for i := 0; i < n; i++ {
 		scan(&a[i])
 	}
-
+	var mask int = (1 << 30) - 1
+	for i := 0; i < n; i++ {
+		mask &= a[i]
+	}
+	printf("%d\n", mask)
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------

@@ -28,6 +28,25 @@ func solve() {
 		scan(&a[i])
 	}
 
+	for i := 0; i < n; i++ {
+		var target_mask int = a[i]
+		//create empty int array
+		var mask int = -1
+		for j := 0; j < n; j++ {
+			if i == j {
+				continue
+			}
+			if mask == -1 {
+				mask = a[j]
+			} else {
+				mask ^= a[j]
+			}
+		}
+		if mask == target_mask {
+			printf("%d\n", mask)
+			return
+		}
+	}
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------
