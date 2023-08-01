@@ -27,31 +27,7 @@ int main() {
   return 0;
 }
 void solve() {
-
-  string a;
-  cin >> a;
-  int i = 0;
-  int answer = 0;
-  while(true) {
-    set<char> s;
-    while(s.size() < 3 && i < a.size()) {
-      s.insert(a[i]);
-      ++ i;
-    }
-    while(true){
-      if( i == a.size() ) break;
-      s.insert(a[i]);
-      if( s.size() > 3 ) break;
-      ++ i;
-      if( i == a.size() ) break;
-    }
-    //print_set(s);
-
-    if( s.size() > 0 ) {
-      ++ answer;
-    }
-    if( i == a.size() ) break;
-    
-  }
-  cout << answer << endl;
+  int n;
+  cin >> n;
+  cout << n-1 << endl;
 }
