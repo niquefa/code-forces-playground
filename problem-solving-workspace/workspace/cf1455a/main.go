@@ -22,13 +22,13 @@ func assert(f bool) {
 }
 
 func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
-	}
-
+	var s string
+	scan(&s)
+	var n int = len(s)
+	// if s[len(s)-1:] == "0" {
+	// 	n -= 1
+	// }
+	printf("%d\n", n)
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------

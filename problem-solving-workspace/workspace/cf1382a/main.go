@@ -22,13 +22,29 @@ func assert(f bool) {
 }
 
 func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
+	var n, m, tmp int
+	scan(&n, &m)
+	var a = map[int]bool{}
 	for i := 0; i < n; i++ {
-		scan(&a[i])
+		scan(&tmp)
+		a[tmp] = true
 	}
-
+	var b = map[int]bool{}
+	for i := 0; i < m; i++ {
+		scan(&tmp)
+		b[tmp] = true
+	}
+	debug(n, m)
+	debug(a)
+	debug(b)
+	for k := range a {
+		if b[k] {
+			printf("YES\n")
+			printf("1 %d\n", k)
+			return
+		}
+	}
+	printf("NO\n")
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------
@@ -39,6 +55,7 @@ func main() {
 	var ntc int
 	scan(&ntc)
 	for t := 0; t < ntc; t++ {
+		debug("case", t)
 		solve()
 	}
 }

@@ -22,12 +22,25 @@ func assert(f bool) {
 }
 
 func solve() {
+	var exerciseAccumulator = [3]int{0, 0, 0}
+	var exerciseName = [3]string{"chest", "biceps", "back"}
 	var n int
 	scan(&n)
-	var a = make([]int, n)
+	var tmp int
 	for i := 0; i < n; i++ {
-		scan(&a[i])
+		scan(&tmp)
+		exerciseAccumulator[i%3] += tmp
 	}
+	debug(exerciseAccumulator)
+	var mostExercise = exerciseAccumulator[0]
+	var mostExerciseIndex = 0
+	for i := 0; i < 3; i++ {
+		if mostExercise < exerciseAccumulator[i] {
+			mostExercise = exerciseAccumulator[i]
+			mostExerciseIndex = i
+		}
+	}
+	printf("%s\n", exerciseName[mostExerciseIndex])
 
 }
 
@@ -35,10 +48,5 @@ func solve() {
 
 func main() {
 	defer flush()
-
-	var ntc int
-	scan(&ntc)
-	for t := 0; t < ntc; t++ {
-		solve()
-	}
+	solve()
 }
