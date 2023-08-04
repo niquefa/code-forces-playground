@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"container/list"
 	"fmt"
 	"os"
+	"strings"
 )
 
 var (
@@ -17,21 +19,26 @@ func printf(f string, a ...interface{}) { fmt.Fprintf(out, f, a...) }
 func debug(a ...interface{})            { fmt.Fprintln(os.Stderr, a...) }
 func assert(f bool) {
 	if !f {
-		panic("gg Rafa, something went wrong!")
+		panic("gg")
 	}
+}
+
+func solve() {
+	var s string
+	scan(&s)
+	l := list.New()
+	for _, c := range s {
+		l.PushFront(c)
+		l.PushBack(c)
+	}
+	var ans strings.Builder
+	for e := l.Front(); e != nil; e = e.Next() {
+		ans.WriteRune(e.Value.(rune))
+	}
+	fmt.Println(ans.String())
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------
-
-func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
-	}
-
-}
 
 func main() {
 	defer flush()
@@ -39,8 +46,6 @@ func main() {
 	var ntc int
 	scan(&ntc)
 	for t := 0; t < ntc; t++ {
-
 		solve()
-
 	}
 }

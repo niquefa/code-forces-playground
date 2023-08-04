@@ -17,21 +17,22 @@ func printf(f string, a ...interface{}) { fmt.Fprintf(out, f, a...) }
 func debug(a ...interface{})            { fmt.Fprintln(os.Stderr, a...) }
 func assert(f bool) {
 	if !f {
-		panic("gg Rafa, something went wrong!")
+		panic("gg")
 	}
+}
+
+func solve() {
+	var n, m int
+	scan(&n, &m)
+	if (n == 2 && m == 2) || n == 1 || m == 1 {
+		printf("YES\n")
+	} else {
+		printf("NO\n")
+	}
+
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------
-
-func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
-	}
-
-}
 
 func main() {
 	defer flush()
@@ -39,8 +40,6 @@ func main() {
 	var ntc int
 	scan(&ntc)
 	for t := 0; t < ntc; t++ {
-
 		solve()
-
 	}
 }
