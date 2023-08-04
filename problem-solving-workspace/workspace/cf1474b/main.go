@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"sort"
 	"time"
@@ -24,78 +23,48 @@ func assert(f bool) {
 	}
 }
 
-func getDivisors(n int64) []int64 {
-	var divisors []int64
-
-	divisors = append(divisors, 1)
-	if n != 1 {
-		divisors = append(divisors, n)
-	}
-
-	for i := int64(2); i <= int64(math.Sqrt(float64(n))); i++ {
-		if n%i == 0 {
-			divisors = append(divisors, i)
-			if n/i != i {
-				divisors = append(divisors, n/i)
+func generatePrimes(n int) []int {
+	composite := make([]bool, n+1)
+	for i := 2; i*i <= n; i++ {
+		if !composite[i] {
+			for j := i * i; j <= n; j += i {
+				composite[j] = true
 			}
 		}
 	}
 
-	sort.Slice(divisors, func(i, j int) bool { return divisors[i] < divisors[j] })
-
-	return divisors
-}
-
-func getMinDiff(a []int64) int64 {
-	var minDiff int64 = math.MaxInt64
-	for i := 1; i < len(a); i++ {
-		if a[i]-a[i-1] < minDiff {
-			minDiff = a[i] - a[i-1]
+	var primes []int
+	for p := 2; p <= n; p++ {
+		if !composite[p] {
+			primes = append(primes, p)
 		}
 	}
-	return minDiff
+	return primes
 }
 
-func solve() {
-	var n int
-	scan(&n)
-	fmt.Println(answer[n])
-	if answer[n] != 0 {
-		fmt.Println(answer[n])
-		return
-	}
-	for {
-		n++
-		if _, alreadyInMap := answer[int(n)]; alreadyInMap {
-			fmt.Println(answer[n])
-			return
-		}
-	}
+func solve(primes []int) {
+	var d int
+	scan(&d)
+	indexC := sort.Search(len(primes), func(i int) bool { return primes[i] >= d+1 })
+	indexB := sort.Search(len(primes), func(i int) bool { return primes[i] >= d+primes[indexC] })
+	fmt.Println(primes[indexC] * primes[indexB])
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------
-var answer = make(map[int]int)
-
+// sieve of eratosthenes number theory prime factorization
+// Video explanation https://www.youtube.com/watch?v=CI4O7AxD9V8
 func main() {
 	start := time.Now()
 	defer flush()
-	answer[1] = 6
-	answer[2] = 15
-	for n := 3; n <= 1000000; n++ {
-		divisors := getDivisors(int64(n))
-		if len(divisors) < 4 {
-			continue
-		}
-		d := getMinDiff(divisors)
-		if _, alreadyInMap := answer[int(d)]; !alreadyInMap {
-			answer[int(d)] = n
-			debug(n, d, divisors)
-		}
-	}
+	primes := generatePrimes(200000)
+	// for i, v := range primes {
+	// 	debug(i, v)
+	// }
+	debug(len(primes), primes[len(primes)-1])
 	var ntc int
 	scan(&ntc)
 	for t := 0; t < ntc; t++ {
-		solve()
+		solve(primes)
 	}
 	elapsed := time.Since(start)
 	debug("Running Time: ", elapsed)
