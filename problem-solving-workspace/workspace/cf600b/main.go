@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
+	"strings"
 	"time"
 )
 
@@ -25,27 +27,31 @@ func assert(f bool) {
 // ----------------------------- TEMPLATE END ----------------------------------
 
 func solve() {
-	var n int
-	scan(&n)
+	var n, m int
+	scan(&n, &m)
 	var a = make([]int, n)
 	for i := 0; i < n; i++ {
 		scan(&a[i])
 	}
-
+	var b = make([]int, m)
+	for i := 0; i < m; i++ {
+		scan(&b[i])
+	}
+	//fmt.Println(a, b)
+	sort.Ints(a)
+	var sb strings.Builder
+	for _, x := range b {
+		ans := sort.Search(len(a), func(i int) bool { return a[i] > x })
+		sb.WriteString(fmt.Sprintf("%d ", ans))
+	}
+	fmt.Println(sb.String())
 }
 
 func main() {
 	startTime := time.Now()
 
 	defer flush()
-
-	var ntc int
-	scan(&ntc)
-	for t := 0; t < ntc; t++ {
-
-		solve()
-
-	}
+	solve()
 
 	debug(fmt.Sprintf("\n\t\t>>> %s EXECUTION TIME <<<\n", time.Since(startTime)))
 }

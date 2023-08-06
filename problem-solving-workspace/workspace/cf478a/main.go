@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"time"
 )
 
 var (
@@ -25,27 +24,22 @@ func assert(f bool) {
 // ----------------------------- TEMPLATE END ----------------------------------
 
 func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
+	var n int = 5
+	var a int
+	var sum int = 0
 	for i := 0; i < n; i++ {
-		scan(&a[i])
+		scan(&a)
+		sum += a
 	}
-
+	debug(n, sum)
+	if sum != 0 && sum%n == 0 {
+		fmt.Println(sum / n)
+	} else {
+		fmt.Println(-1)
+	}
 }
 
 func main() {
-	startTime := time.Now()
-
 	defer flush()
-
-	var ntc int
-	scan(&ntc)
-	for t := 0; t < ntc; t++ {
-
-		solve()
-
-	}
-
-	debug(fmt.Sprintf("\n\t\t>>> %s EXECUTION TIME <<<\n", time.Since(startTime)))
+	solve()
 }

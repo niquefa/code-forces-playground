@@ -25,12 +25,14 @@ func assert(f bool) {
 // ----------------------------- TEMPLATE END ----------------------------------
 
 func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
+	var n, s int64
+	scan(&n, &s)
+	if s == 0 {
+		fmt.Println(0)
+		return
 	}
+	debug(s, n, s/(n*n))
+	fmt.Println(s / (n * n))
 
 }
 
