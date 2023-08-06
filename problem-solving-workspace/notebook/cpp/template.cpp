@@ -24,7 +24,7 @@ using namespace std;
 
 template<class T> string grow_to_size( T element , int size_to_get , const string& str_to_append = " " ){
   string answer = to_string(element);
-  while( answer.size() < size_to_get )
+  while( (int)answer.size() < size_to_get )
     answer = str_to_append + answer;
   return answer;
 }
