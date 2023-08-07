@@ -54,8 +54,6 @@ void solve() {
     if (a[i] == max) 
       strong_vertices.push_back(i + 1);
     
-  
-
   cout << strong_vertices.size() << endl;
   for (int vertex : strong_vertices) 
     cout << vertex << " ";
