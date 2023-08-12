@@ -42,7 +42,6 @@ void solve() {
     return;
   }
   for( long long a = 1; a < 60; a++ ) {
-    if( x*x > y ) break;
     for( long long b = 1; ; b++ ) {
       long long r = x * fpow(b,a);
       //debug(x,y,a,b,r);
