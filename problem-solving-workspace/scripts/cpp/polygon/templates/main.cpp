@@ -207,7 +207,7 @@ inline bool is_off( const long long& mask, const int& bit ){return (mask & (1LL 
 #define contains(s,x)    ((s&(1<<(x)))>0)                        //s contiene a x?, para s=...1010001[2], x=3[10], true, x=2, false
 #define containsl(s,x)   ((s&((1(unsigned long long))<<(n)))>0)  //s contiene a x?,
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 vector<vector<bool> > get_adj_matrix( const vector<string>& m ){vector<vector<bool> > ans;for( int i = 0; i < m.size(); ++ i ){vector<bool> v;for( int j = 0; j < m[i].size(); ++ j )v.push_back(m[i][j] == 'Y');ans.push_back(v);}return ans;}
 
 template<class T> inline T fmax( const T& a , const T& b ){return a > b ? a: b;}

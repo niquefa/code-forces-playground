@@ -7,7 +7,7 @@ using namespace std;
 #else
 #define debug(...) 42
 #endif
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 #define va(c)            cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"]\n":"|");
 
 int main() {
@@ -31,7 +31,7 @@ int main() {
     }
 
     if( different_colors.size() == 2  ) {
-      map<int,int> frecuencies = get_frecuencies(colors);
+      map<int,int> frecuencies = get_frequencies(colors);
       int min_frequency = min(frecuencies.begin()->second, frecuencies.rbegin()->second);
       debug(n,k, min_frequency);
       if( min_frequency == 1 ) {

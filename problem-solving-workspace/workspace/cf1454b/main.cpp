@@ -13,7 +13,7 @@ using namespace std;
 
 #define iminel(c)        ((min_element((c).begin(),(c).end()))-(c).begin())
 #define minel(c)         (*min_element((c).begin(),(c).end()))
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 template<class T> int find_first( vector< T >& v, T o ){   for( int i = 0; i < v.size(); ++ i )if( v[i] == o )return i; return -1;}
 
 const int MAX = 200001;

@@ -62,7 +62,7 @@ template<class K, class V> void print_map(const map<K, V>& m, const string& map_
   cerr << "} " << m.size() << " <K,V> pairs." << endl;
 }
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 
 void solve() {
@@ -73,7 +73,7 @@ void solve() {
 
   sort(a.begin(), a.end());
   
-  map<int,int> f = get_frecuencies(a);
+  map<int,int> f = get_frequencies(a);
   print_map(f);
   for( auto it = f.begin(); it != f.end(); ++ it )
     if( it->second >= 3 ){

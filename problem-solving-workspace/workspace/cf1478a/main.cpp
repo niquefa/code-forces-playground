@@ -10,7 +10,7 @@ using namespace std;
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
 
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 
 void solve();
@@ -38,7 +38,7 @@ void solve() {
   vector<int> a(n);
   for( int i = 0; i < n; ++ i) cin >> a[i];
   
-  map<int,int> f = get_frecuencies(a);
+  map<int,int> f = get_frequencies(a);
   //print_map(f);
   vector<int> values;
   for( auto it = f.begin(); it != f.end(); ++ it ) values.push_back(it->second);

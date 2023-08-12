@@ -8,7 +8,7 @@ using namespace std;
 #define debug(...) 42
 #endif
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 int main() {
   ios_base::sync_with_stdio(false);
@@ -21,7 +21,7 @@ int main() {
     string s;
     cin >> s;
     vector<char> vs(s.begin(), s.end());
-    map<char, int> frequencies = get_frecuencies(vs);
+    map<char, int> frequencies = get_frequencies(vs);
 
     int answer = 0;
     int singles = 0;

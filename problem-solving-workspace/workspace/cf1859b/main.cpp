@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 #ifdef LOCAL
 #include "debug.h"
 #else
@@ -9,6 +8,12 @@ using namespace std;
 #endif
 
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
+
+#define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
+#define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
+#define vaa(c)           cout<<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
+#define vaat(c,F,C)      cout<<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
+
 
 #define vx(x)            cerr<<"{ " << #x << " = "<<x<<" }"<<endl;
 #define vx2(x,y)         cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<" }"<<endl;
@@ -19,7 +24,7 @@ using namespace std;
 
 template<class T> string grow_to_size( T element , int size_to_get , const string& str_to_append = " " ){
   string answer = to_string(element);
-  while( answer.size() < size_to_get )
+  while( (int)answer.size() < size_to_get )
     answer = str_to_append + answer;
   return answer;
 }
@@ -62,81 +67,59 @@ template<class K, class V> void print_map(const map<K, V>& m, const string& map_
   cerr << "} " << m.size() << " <K,V> pairs." << endl;
 }
 
-template<class T> void print_stack( const stack<T>& s, const string& stack_name = "" )
-{
-  stack<T> ss = s;
-  deque<T> v;
-  while( !ss.empty() ){
-    v.push_front(ss.top());
-    ss.pop();
-  }
-  cerr << "stack: ";
-  va(v)
-}
-template<class T> void print_queue( const queue<T>& s )
-{
-  queue<T> ss = s;
-  deque<T> v;
-  while( !ss.empty() ){
-    v.push_front(ss.front());
-    ss.pop();
-  }
-  cerr << "queue: ";
-  va(v)
-}
-
-
-
-#define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
-#define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
-#define vaa(c)           cout<<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
-#define vaat(c,F,C)      cout<<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
-
-template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
-
-void solve() {
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for( int i = 0; i < n; ++ i) cin >> a[i];
-
-  map<int,int> f = get_frequencies(a);
-  print_map(f);
-
-  vector<int> keys;
-  for( auto it = f.begin(); it != f.end(); ++ it ) keys.push_back(it->first);
-
-  vector<int> values;
-  for( auto it = f.begin(); it != f.end(); ++ it ) values.push_back(it->second);
-
-  print_vector(keys, "Keys  ");
-  print_vector(values, "Values");
-
-  bool factible = true;
-  for( int i = 0; factible && i < keys.size(); ++ i )
-    if( keys[i] != i )
-      factible = false;
-
-  for( int i = 0; factible && i < values.size() - 1; ++ i ) 
-    if( values[i] < values[i+1] )
-      factible = false;
-  
-  for( int i = 1; factible && i < values.size(); ++ i ) 
-    if( values[i] > values[i-1] )
-      factible = false;
-  
-  cout << (factible ? "YES" : "NO") << endl;
-}
-
+void solve();
 int main() {
+  auto start_execution_time = chrono::high_resolution_clock::now();
+
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
-  int test_cases;
+  int test_cases = 1;
   cin >> test_cases;
   for( int current_test = 1; current_test <= test_cases; ++ current_test ) {
-    cerr << "\nTest case " << current_test << endl;
+    //cerr << "\nTest case " << current_test << endl;
     solve();
   }
+  auto finish_execution_time = chrono::high_resolution_clock::now();
+
+  chrono::duration<double, milli> elapsed = finish_execution_time - start_execution_time;
+  cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
+}
+void solve() {
+  int n;
+  cin >> n;
+  vector<vector<int> > all_arrays(n);
+  int best_index = 0;
+  long long answer = 0;
+  long long lowest_value = 10e10;
+  for( int array = 0; array < n; array ++ ) {
+    int m;
+    cin >> m;
+    vector<int> a(m);
+    for( int i = 0; i < m; ++ i )
+      cin >> a[i];
+    sort(a.begin(), a.end());
+    if( m == 1 ) a.push_back(a[0]);
+    all_arrays[array] = a;
+
+    if( a[1] < all_arrays[best_index][1] ) {
+      best_index = array;
+    }
+    if( a[0] < lowest_value ) {
+      lowest_value = a[0];
+    }
+
+    answer += a[1];
+
+    //debug(array);
+    //print_vector(a);
+
+  }
+  //debug(answer, lowest_value, best_index);
+  if( n == 1 ) {
+    cout << all_arrays[0][0] << endl;
+    return;
+  }
+  cout << answer + lowest_value - all_arrays[best_index][1] << endl;
 }

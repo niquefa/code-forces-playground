@@ -39,39 +39,16 @@ template<class T> void print_vector(const vector<T>& c, const string& vector_nam
   cerr << " ] " << c.size() << " Elements." << endl;
 }
 
-void solve();
-long long get_cost(const vector<int>& permutation) {
-  long long result = 0;
-  long long bestJValue = 0;
-  for(vector<int>::size_type i = 0; i < permutation.size(); ++i) {
-    result += (long long)permutation[i] * (i+1);
-    if( permutation[i]*((long long)i+1) > bestJValue ) {
-      bestJValue = permutation[i]*(i+1);
-    }
-  }
-  return result - bestJValue;
-} 
-void brute_force() {
-  for( int n = 1; n <= 20; ++ n ) {
-    long long best_cost = 0;
-    vector<int> permutation(n);
-    iota(permutation.begin(), permutation.end(), 1);
-    vector<int> best_permutation;
-    do {
-      long long current_cost = get_cost(permutation);
-      if( current_cost > best_cost ) {
-        best_cost = current_cost;
-        best_permutation = permutation;
-      }
-    } while(next_permutation(permutation.begin(), permutation.end()));
-    print_vector(best_permutation, "Best permutation");
-    debug(n, best_cost);
-    cerr << endl;cerr << endl;cerr << endl;
-  }
+void print_solution( const vector<int>& solution_vector ) {
+  for( int i = 0; i < solution_vector.size(); ++ i) 
+    cout << (i > 0 ? " " : "") << solution_vector[i];
+  cout << endl;
 }
+
+void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
-  //brute_force();
+
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
@@ -87,46 +64,35 @@ int main() {
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
-long long get_answer_with_brute_force(int n)
-{
-  long long best_cost = 0;
-  vector<int> permutation(n);
-  iota(permutation.begin(), permutation.end(), 1);
-  vector<int> best_permutation;
-  do {
-    long long current_cost = get_cost(permutation);
-    if( current_cost > best_cost ) {
-      best_cost = current_cost;
-      best_permutation = permutation;
-    }
-  } while(next_permutation(permutation.begin(), permutation.end()));
-  return best_cost;
-}
 void solve() {
   int n;
   cin >> n;
-  if( n <= 9 ) {
-    cout << get_answer_with_brute_force(n) << endl;
+  vector<int> a(n);
+  for( int i = 0; i < n; ++ i) cin >> a[i];
+  set<int> s(a.begin(), a.end());
+  if( s.size() == 1 ) {
+    cout << -1 << endl;
     return;
   }
-  long long best_cost = 0;
-  vector<int> permutation(n);
-  for( int up_to = 1; up_to <= n; ++up_to ) {
-    int index = 0;
-    for( int i = 1; i <= up_to; ++i ) {
-      permutation[index++] = i;
-    }
-    int going_down = n;
-    for( int i = up_to+1; i <= n; ++i ) {
-      permutation[index++] = going_down--;
-    }
 
-    long long current_cost = get_cost(permutation);
-    if( current_cost > best_cost ) {
-      best_cost = current_cost;
-    }
+
+  vector<int> b;
+  vector<int> c;
+  sort(a.begin(), a.end());
+  b.push_back(a[0]);
+  
+  for( int i = 1; i < n; ++ i) {
+    if( a[i] == b[0]) b.push_back(a[i]);
+    else c.push_back(a[i]);
   }
-  
-  
-  cout << best_cost << endl;
+  // print_vector(a);
+  // print_vector(b);
+  // print_vector(c);
+  if( b.size() > 0 && c.size() > 0 ) {
+    cout << b.size() << " " << c.size() << endl;
+    print_solution(b);
+    print_solution(c);
+  } else {
+    cout << -1 << endl;
+  }
 }

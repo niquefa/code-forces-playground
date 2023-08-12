@@ -68,7 +68,7 @@ template<class K, class V> void print_map(const map<K, V>& m, const string& map_
 }
 
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 template<class T> inline void tmax( T& ans , const T& tmp ){ if( tmp > ans ) ans = tmp;}
 
@@ -111,7 +111,7 @@ void solve() {
   //va(a);
 
   
-  map<int,int> f = get_frecuencies(a);
+  map<int,int> f = get_frequencies(a);
   //print_map(f);
   int max_f = 0;
   for( auto& p : f ) tmax(max_f, p.second);

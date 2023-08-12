@@ -80,7 +80,7 @@ template<class K, class V> set<K> key_set(const map<K, V>& m) {
     return keys;
 }
 
-template<class T> map<T,int> get_frecuencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 void solve();
 int main() {
@@ -122,7 +122,7 @@ void solve() {
   sort(b.begin(), b.end());
   //print_vector(b);
   vector<long long> a;
-  map<long long,int> f = get_frecuencies(b);
+  map<long long,int> f = get_frequencies(b);
   //print_map(f);
   vector<long long> keys_vector(keys.begin(), keys.end());
   //print_vector(keys_vector,"Keys");
