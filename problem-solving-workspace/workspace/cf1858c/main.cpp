@@ -39,10 +39,95 @@ template<class T> void print_vector(const vector<T>& c, const string& vector_nam
   cerr << " ] " << c.size() << " Elements." << endl;
 }
 
+template<class T> void print_set(const set<T>& c, const string& set_name = "") {
+  cerr << (!set_name.empty() ? set_name : "   Set : ") << "{ ";
+  for(auto it = c.begin(); it != c.end(); ++it) {
+    if (it != c.begin())
+      cerr << " , ";
+    cerr << *it;
+  }
+  cerr << " } " << c.size() << " Elements." << endl;
+}
+
+
+
+template<class T> T gcd(T a,T b) {if (a<0) a=-a;if (b<0) b=-b;return (b==0)?a:gcd(b,a%b);}
+template<class T> T lcm(T a,T b) {return (a/gcd(a,b))*b;}
+
+vector<int> get_d( const vector<int>& p ) {
+  vector<int> d;
+  int n = p.size();
+  for( int i = 0; i < n; ++ i ) {
+    int ii = (i+1)%n;
+    int di = gcd(p[i],p[ii]);
+    d.push_back(di);
+  }
+  return d;
+}
+int score( const vector<int>& p ) {
+  int n = p.size();
+  vector<int> d = get_d(p); 
+  //print_vector(d);
+  set<int> s(d.begin(),d.end());
+  return s.size();
+}
+int best_score[] = {-1,-1,1,1,2,2,3,3,4,4,5,5,6,6};
+void brute_force(int n) {
+  vector<int> p(n);
+  iota(p.begin(), p.end(), 1);
+  va(p);
+  vector<int> best_p(p.begin(), p.end());
+  int max_score = score(best_p);
+  do {
+    int s = score(p);
+    //print_vector(p);
+    //debug("score ", s);
+    //cerr << endl;
+
+    if (s >= max_score) {
+      max_score = s;
+      best_p = p;
+    }
+    if( s == best_score[n] ) {
+      //print_vector(p);
+      //cerr << endl;
+    }
+  } while (next_permutation(p.begin(), p.end()));
+  print_vector(best_p);
+  print_vector(get_d(best_p));
+  vx(max_score);
+  cerr << endl;
+}
+const int MAX = 200010;
+bool used[MAX];
+bool is_prime[MAX];
+
+void fill_primes() {
+    memset(is_prime, true, sizeof(is_prime));
+
+    is_prime[0] = is_prime[1] = false;
+
+    for(int i = 2; i * i < MAX; i++) {
+        if(is_prime[i]) {
+            for(int j = i * i; j < MAX; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+}
+
 void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
+  // vector<int> pt = {1,2,3,6,4,5,7};
+  // score(pt);
 
+
+  // for( int n = 10; n <= 15; ++ n ) {
+  //   debug("For n ", n, "Best score is ", best_score[n]);
+  //   brute_force(n);
+  // }
+  fill_primes();
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
@@ -58,47 +143,32 @@ int main() {
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
+void print_solution( const vector<int>& solution_vector ) {
+  for( int i = 0; i < solution_vector.size(); ++ i) 
+    cout << (i > 0 ? " " : "") << solution_vector[i];
+  //cout << " => " << solution_vector.size() << " score " << score(solution_vector);
+  cout << endl;
+}
+
+#define incontainer(c,x) ((c).find(x)!=(c).end())
+
 void solve() {
-  int n,m,d;
-  cin >> n>> m >> d;
-  debug(n,m,d);
-  
-  vector<int> s(m + 2);
-  for(int i = 1; i <= m; i++) {
-      cin >> s[i];
+  int n;
+  cin >> n;
+  vector<int> solution;
+  set<int> used;
+  for( int i = 1; i <= n; ++ i ) {
+    if( incontainer(used,i) )
+      continue;
+    solution.push_back(i);
+    used.insert(i);
+    for( int multiple = 2*i; multiple <= n; multiple *=2 ) {
+      if( incontainer(used,multiple) )
+        continue;
+      solution.push_back(multiple);
+      used.insert(multiple);
+    }
   }
-  s[0] = 1-d;
-  s[m + 1] = n + 1;
-  //print_vector(s);
-  int total_spots = 0;
-  vector<int> points_up_to(m + 2);
-  for( int i = 1; i < points_up_to.size() ; i ++ ) {
-    points_up_to[i] = (s[i] - s[i-1]) / d;
-    if( (s[i] - s[i-1]) % d == 0 ) points_up_to[i] --;
-    //debug(i,points_up_to[i],total_spots);
-    total_spots += points_up_to[i];
-  }
-  total_spots += m;
-  //print_vector(points_up_to);
-  int max_saved_points = 0;
-  for( int i = 1; i <= m ; i ++ ) {
-    int points_with_out_i = (s[i+1] - s[i - 1] - 1) / d;
-    int points_with_i = 1 + points_up_to[i] + points_up_to[i+1]; 
-    //debug(i,points_with_i,points_with_out_i);
-    max_saved_points = max(max_saved_points, points_with_i - points_with_out_i);
-    //debug(i,max_saved_points);
-  }
-  debug(total_spots);
-  total_spots -= max_saved_points;
-  debug(max_saved_points);
-  int cnt = 0;
-  for( int i = 1; i <= m ; i ++ ) {
-    int points_with_out_i = (s[i+1] - s[i - 1] - 1) / d;
-    int points_with_i = 1 + points_up_to[i] + points_up_to[i+1]; 
-    int saved_points = points_with_i - points_with_out_i;
-    if (saved_points == max_saved_points) 
-      cnt ++;
-    
-  }
-  cout << total_spots << " " << cnt << endl;
+
+  print_solution(solution);
 }
