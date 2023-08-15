@@ -9,7 +9,6 @@ using namespace std;
 
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
 
-
 void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
@@ -18,7 +17,7 @@ int main() {
   cin.tie(0);
   cout.tie(0);
   int test_cases = 1;
-  cin >> test_cases;
+  //cin >> test_cases;
   for( int current_test = 1; current_test <= test_cases; ++ current_test ) {
     cerr << "\nTest case " << current_test << endl;
     solve();
@@ -30,27 +29,31 @@ int main() {
   return 0;
 }
 void solve() {
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for( int i = 0; i < n; ++ i) cin >> a[i];
-  sort(a.begin(), a.end());
-  int m = a[0];
-  for( int i = 0; i < n; ++ i) a[i] -= m;
+  int n, d;
+  cin >> n >> d;
+  vector<int> t(n);
+  for( int i = 0; i < n; ++ i) cin >> t[i];
+  
+  sort(t.begin(), t.end());
 
-  if( n == 1) {
-    cout << "YES" << endl;
-    return;
-  }
-  if( a[0] != 0 ) {
-    cout << "NO" << endl;
-    return;
-  }
-  for( auto x : a ) {
-    if( x % 2 != 0 ) {
-      cout << "NO" << endl;
-      return;
+  bool solution = true;
+  int jokes = 0;
+  for( int i = 0; i < n; i ++ ) {
+    if( d < 0 ) {
+      solution = false;
+      break;
+    }
+    d -= t[i];
+    if( d < 0 ) {
+      solution = false;
+      break;
+    }
+    if( i == n - 1 ) {
+      jokes += d / 5;
+    } else {
+      jokes += 2;
+      d -= 10;
     }
   }
-  cout << "YES" << endl;
+  cout << (solution ? jokes : -1) << endl;
 }

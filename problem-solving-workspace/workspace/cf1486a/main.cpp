@@ -7,9 +7,6 @@ using namespace std;
 #define debug(...) 42
 #endif
 
-#define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
-
-
 void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
@@ -32,22 +29,13 @@ int main() {
 void solve() {
   int n;
   cin >> n;
-  vector<int> a(n);
+  vector<long long> a(n);
   for( int i = 0; i < n; ++ i) cin >> a[i];
-  sort(a.begin(), a.end());
-  int m = a[0];
-  for( int i = 0; i < n; ++ i) a[i] -= m;
-
-  if( n == 1) {
-    cout << "YES" << endl;
-    return;
-  }
-  if( a[0] != 0 ) {
-    cout << "NO" << endl;
-    return;
-  }
-  for( auto x : a ) {
-    if( x % 2 != 0 ) {
+  vector<long long> s(n);
+  s[0] = a[0];
+  for( int i = 1; i < n; ++ i) {
+    s[i] = s[i - 1] + a[i];
+    if( s[i] < ((i+1)*(i))/2) {
       cout << "NO" << endl;
       return;
     }

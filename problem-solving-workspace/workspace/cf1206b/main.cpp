@@ -9,7 +9,6 @@ using namespace std;
 
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
 
-
 void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
@@ -18,7 +17,7 @@ int main() {
   cin.tie(0);
   cout.tie(0);
   int test_cases = 1;
-  cin >> test_cases;
+  //cin >> test_cases;
   for( int current_test = 1; current_test <= test_cases; ++ current_test ) {
     cerr << "\nTest case " << current_test << endl;
     solve();
@@ -32,25 +31,35 @@ int main() {
 void solve() {
   int n;
   cin >> n;
-  vector<int> a(n);
-  for( int i = 0; i < n; ++ i) cin >> a[i];
-  sort(a.begin(), a.end());
-  int m = a[0];
-  for( int i = 0; i < n; ++ i) a[i] -= m;
+  vector<long long> a(n);
+  long long ans = 0;
+  long long zeros = 0;
+  long long negatives = 0;
+  long long positives = 0;
+  for( int i = 0; i < n; ++ i) {
+    cin >> a[i];
+    if( a[i] == 0 ) ++ zeros;
+    else if( a[i] < 0 ) ++ negatives;
+    else ++ positives;
 
-  if( n == 1) {
-    cout << "YES" << endl;
-    return;
-  }
-  if( a[0] != 0 ) {
-    cout << "NO" << endl;
-    return;
-  }
-  for( auto x : a ) {
-    if( x % 2 != 0 ) {
-      cout << "NO" << endl;
-      return;
+    if( a[i] < 0 ) {
+      ans += -1 - a[i];
+    }
+    if( a[i] > 0 ) {
+      ans += a[i] - 1;
+    }
+    if( a[i] == 0 ) {
+      ans += 1;
     }
   }
-  cout << "YES" << endl;
+  if( negatives % 2 == 0 ){ 
+    cout << ans << endl;
+    return;
+  }
+  if( zeros > 0 ) {
+    cout << ans << endl;
+    return;
+  }
+  cout << ans + 2 << endl;
+  
 }
