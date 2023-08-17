@@ -9,31 +9,22 @@ using namespace std;
 
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
 
-#define vap(c)           cout<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cout<<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
-#define vat(a,t)         cout<<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cout<<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
-#define vaa(c)           cout<<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
-#define vaat(c,F,C)      cout<<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cout<<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
+#define vap(c)           cerr <<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr <<(JJ==0?"[":"")<<c[JJ].first<<","<<c[JJ].second<<(JJ==(c).size()-1?"]\n":" | ");
+#define vat(a,t)         cerr <<#a << " :  ";for(int JJ=0;JJ<t;++JJ)cerr <<(JJ==0?"[":"")<<a[JJ]<<(JJ==t-1?"]\n":",");
+#define vaa(c)           cerr <<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cerr <<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
+#define vaat(c,F,C)      cerr <<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cerr <<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
 
-
-#define vx(x)            cerr<<"{ " << #x << " = "<<x<<" }"<<endl;
-#define vx2(x,y)         cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<" }"<<endl;
-#define vx3(x,y,z)       cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<" }"<<endl;
-#define vx4(x,y,z,w)     cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<" }"<<endl;
-#define vx5(x,y,z,w,q)   cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<", " << #q << " = "<<q<<" }"<<endl;
-#define vx6(x,y,z,w,q,p) cerr<<"{ " << #x << " = "<<x<<", " << #y << " = "<<y<<", " << #z << " = "<<z<<", " << #w << " = "<<w<<", " << #q << " = "<<q<<", " << #p << " = "<<p<<" }"<<endl;
 
 template<class T> string grow_to_size( T element , int size_to_get , const string& str_to_append = " " ){
   string answer = to_string(element);
-  while( (int)answer.size() < size_to_get )
-    answer = str_to_append + answer;
+  while( (int)answer.size() < size_to_get )answer = str_to_append + answer;
   return answer;
 }
 
 template<class T> void print_vector(const vector<T>& c, const string& vector_name = "") {
   cerr << (!vector_name.empty() ? vector_name : "Vector : ") << "[ ";
   for(auto it = c.begin(); it != c.end(); ++it) {
-    if (it != c.begin())
-      cerr << " , ";
+    if (it != c.begin()) cerr << " , ";
     cerr << *it;
   }
   cerr << " ] " << c.size() << " Elements." << endl;
@@ -42,8 +33,7 @@ template<class T> void print_vector(const vector<T>& c, const string& vector_nam
 template<class T> void print_set(const set<T>& c, const string& set_name = "") {
   cerr << (!set_name.empty() ? set_name : "   Set : ") << "{ ";
   for(auto it = c.begin(); it != c.end(); ++it) {
-    if (it != c.begin())
-      cerr << " , ";
+    if (it != c.begin()) cerr << " , ";
     cerr << *it;
   }
   cerr << " } " << c.size() << " Elements." << endl;
@@ -359,6 +349,12 @@ template<class K, class V> set<K> key_set(const map<K, V>& m) {
 template<class T> map<T,int> get_frequencies( const vector<T>& v ){map<T,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
 
 map<char,int> get_char_frequencies( const string& v ){map<char,int> ans;for( int i = 0; i < v.size(); ++ i )ans[v[i]]++;return ans;}
+
+template<typename T>T iceil(T n, T d) {
+  if (d == 0) throw runtime_error("Division by zero!");
+  if (n < 0 || d < 0) return (n + ((d > 0) ? 0 : (d + 1))) / d;
+  return (n + d - 1) / d;
+}
 
 void solve();
 int main() {

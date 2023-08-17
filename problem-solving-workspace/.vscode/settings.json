@@ -115,5 +115,9 @@
     "spanstream": "cpp",
     "syncstream": "cpp"
   },
-  "C_Cpp.errorSquiggles": "disabled"
+  "C_Cpp.errorSquiggles": "disabled",
+  "cSpell.words": [
+    "iceil",
+    "vaat"
+  ]
 }
