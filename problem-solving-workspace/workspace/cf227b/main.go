@@ -25,13 +25,27 @@ func assert(f bool) {
 // ----------------------------- TEMPLATE END ----------------------------------
 
 func solve() {
-	var n int
+	var n, m int
 	scan(&n)
-	var a = make([]int, n)
+	var a = make([]int, n+1)
+	var l = make([]int, n+1)
+	var r = make([]int, n+1)
 	for i := 0; i < n; i++ {
 		scan(&a[i])
+		l[a[i]] = i + 1
+		r[a[i]] = n - i
 	}
-
+	scan(&m)
+	var tmp int
+	var ans1 int64 = 0
+	var ans2 int64 = 0
+	debug(n, m, a)
+	for i := 0; i < m; i++ {
+		scan(&tmp)
+		ans1 += int64(l[tmp])
+		ans2 += int64(r[tmp])
+	}
+	printf("%d %d\n", ans1, ans2)
 }
 
 func main() {
@@ -40,7 +54,7 @@ func main() {
 	defer flush()
 
 	var ntc int = 1
-	scan(&ntc)
+	//scan(&ntc)
 	for t := 0; t < ntc; t++ {
 
 		solve()

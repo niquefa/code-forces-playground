@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"time"
 )
 
@@ -31,7 +32,23 @@ func solve() {
 	for i := 0; i < n; i++ {
 		scan(&a[i])
 	}
+	sort.Ints(a)
+	var ans int = 0
 
+	for i := 0; i < n; i++ {
+		if a[i] <= i+1 {
+			ans = i + 1
+		} else {
+			for j := i + 1; j < n; j++ {
+				if a[j] <= j+1 {
+					ans = j + 1
+				}
+			}
+			break
+		}
+	}
+	debug(n, a)
+	fmt.Println(ans + 1)
 }
 
 func main() {
@@ -39,7 +56,7 @@ func main() {
 
 	defer flush()
 
-	var ntc int = 1
+	var ntc int
 	scan(&ntc)
 	for t := 0; t < ntc; t++ {
 

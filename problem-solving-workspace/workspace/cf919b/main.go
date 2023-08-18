@@ -23,13 +23,28 @@ func assert(f bool) {
 }
 
 // ----------------------------- TEMPLATE END ----------------------------------
-
+func getDigitSum(n int) int {
+	var ans int = 0
+	for n > 0 {
+		ans += n % 10
+		n /= 10
+	}
+	return ans
+}
 func solve() {
 	var n int
 	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
+	var k int = 0
+	debug(n)
+	for x := 1; ; x++ {
+		if getDigitSum(x) == 10 {
+			k++
+			//debug(k, x)
+		}
+		if k == n {
+			fmt.Println(x)
+			break
+		}
 	}
 
 }
@@ -40,7 +55,7 @@ func main() {
 	defer flush()
 
 	var ntc int = 1
-	scan(&ntc)
+	//scan(&ntc)
 	for t := 0; t < ntc; t++ {
 
 		solve()
