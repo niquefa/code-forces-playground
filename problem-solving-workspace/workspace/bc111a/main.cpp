@@ -356,15 +356,7 @@ template<typename T>T iceil(T n, T d) {
   return (n + d - 1) / d;
 }
 
-
-class Solution {
-public:
-    bool canMakeSubsequence(string a, string b) {
-      return 1;        
-    }
-};
-
-
+void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
 
@@ -375,13 +367,33 @@ int main() {
   cin >> test_cases;
   for( int current_test = 1; current_test <= test_cases; ++ current_test ) {
     cerr << "\nTest case " << current_test << endl;
-    string a, b;
-    cin >> a >> b;
-    cout << (Solution().canMakeSubsequence(a, b)) << endl;
+    solve();
   }
   auto finish_execution_time = chrono::high_resolution_clock::now();
 
   chrono::duration<double, milli> elapsed = finish_execution_time - start_execution_time;
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
+}
+class Solution {
+public:
+    int countPairs(vector<int>& a, int t) {
+      int ans = 0;
+        for( int i = 0; i < a.size(); ++ i ) {
+          for( int j = i+1; j < a.size(); ++ j ) {
+            if( (a[i] + a[j]) < t ) {
+              ans++;
+            }
+          }
+        }
+        return ans;
+    }
+};
+void solve() {
+  int n, target;
+  cin >> n >> target;
+  vector<int> a(n);
+  for( int i = 0; i < n; ++ i) cin >> a[i];
+  
+  cout << Solution().countPairs(a, target) << endl;
 }
