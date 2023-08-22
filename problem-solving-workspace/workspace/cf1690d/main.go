@@ -25,13 +25,41 @@ func assert(f bool) {
 // ----------------------------- TEMPLATE END ----------------------------------
 
 func solve() {
-	var n int
-	scan(&n)
-	var a = make([]int, n)
-	for i := 0; i < n; i++ {
-		scan(&a[i])
-	}
+	var n, k int
+	scan(&n, &k)
+	var s string
+	scan(&s)
+	// tokens := regexp.MustCompile("W+").Split(s, -1)
+	// for _, token := range tokens {
+	// 	if len(token) >= k {
+	// 		fmt.Println(0)
+	// 		return
+	// 	}
+	// }
 
+	var whitesInThisWindow = 0
+
+	for i := 0; i < k; i++ {
+		if s[i] == 'W' {
+			whitesInThisWindow++
+		}
+	}
+	var answer = whitesInThisWindow
+	//debug("Before", answer)
+	for i := k; i < n; i++ {
+		if s[i-k] == 'W' {
+			whitesInThisWindow--
+		}
+		if s[i] == 'W' {
+			whitesInThisWindow++
+		}
+
+		if answer > whitesInThisWindow {
+			answer = whitesInThisWindow
+		}
+		//debug("after ", i, whitesInThisWindow, answer)
+	}
+	fmt.Println(answer)
 }
 
 func main() {
@@ -42,8 +70,9 @@ func main() {
 	var ntc int = 1
 	scan(&ntc)
 	for t := 0; t < ntc; t++ {
-		debug("\n====================================", t, "====================================")
+		//debug("====================================", t, "====================================")
 		solve()
+
 	}
 
 	debug(fmt.Sprintf("\n\t\t>>> %s EXECUTION TIME <<<\n", time.Since(startTime)))

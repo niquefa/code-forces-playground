@@ -26,12 +26,29 @@ func assert(f bool) {
 
 func solve() {
 	var n int
-	scan(&n)
-	var a = make([]int, n)
+	var s string
+	scan(&n, &s)
+	var zerosAsPrefix, onesAsSuffix int
 	for i := 0; i < n; i++ {
-		scan(&a[i])
+		if s[i] == '0' {
+			zerosAsPrefix++
+		} else {
+			break
+		}
 	}
-
+	for i := n - 1; i >= 0; i-- {
+		if s[i] == '1' {
+			onesAsSuffix++
+		} else {
+			break
+		}
+	}
+	var leftOver string = s[zerosAsPrefix : n-onesAsSuffix]
+	var middle = ""
+	if len(leftOver) > 0 {
+		middle = "0"
+	}
+	fmt.Println(s[:zerosAsPrefix] + middle + s[n-onesAsSuffix:])
 }
 
 func main() {
