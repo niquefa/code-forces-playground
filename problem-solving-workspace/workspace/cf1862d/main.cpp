@@ -27,27 +27,36 @@ int main() {
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
-long long nck[500][500];
-long long nCk( const int& n , const int& k ){if( k == 0 || k == n )return 1;if( k < 0 || k > n )return 0; if( nck[n][k] != -1 ) return nck[n][k];return nck[n][k] = nCk( n-1 , k ) + nCk( n-1 , k-1 );}
-template<class T> long long factorial( const T& n /*hasta 20*/ ){long long f = 1L;for( long long i = 2; i <= n ;++ i )f *= (long long)i;return f;}
-long long icecreams(long long k) {
-    return (k * (k + 3)) / 2;
-}
 
+long long work(long long k, long long n) {
+  return (k * (k - 1)) / 2 >= n;
+}
+bool work_exactly(long long k, long long n) {
+  return (k * (k - 1)) / 2 == n;
+}
 void solve() {
-    long long n;
-    cin >> n;
-    
-    long long lo = 1, hi = 99999999999999ll; // setting a sufficiently large upper bound
-    while (lo < hi) {
-        long long mid = lo + (hi - lo) / 2;
-        if (icecreams(mid) < n) {
-            lo = mid + 1;
-        } else {
-            hi = mid;
-        }
+  long long n;
+  cin >> n;
+  
+  long long lo = 0, hi = 3000000000;
+  while (hi - lo > 1) {
+    long long mid =(lo + hi) / 2;
+    if (work(mid,n)) {
+      hi = mid;
+    } else {
+      lo = mid;
     }
-    
-    cout << lo << "\n";
+  }
+  if(work_exactly(lo,n)) {
+    cout << lo << '\n';
+    return;
+  }
+  if(work_exactly(hi,n)) {
+    cout << hi << '\n';
+    return;
+  }
+  debug(lo,hi);
+  long long missingHi = n - (lo * (lo - 1)) / 2;
+  cout << lo + missingHi << '\n';
 }
 
