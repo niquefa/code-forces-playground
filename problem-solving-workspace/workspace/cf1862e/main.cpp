@@ -61,7 +61,6 @@ void solve() {
   {
     if (a[i] > 0)
     {
-      debug("antes",i,a[i],sum,ans,d*(i+1));
       ans = max(ans, sum + a[i] - d * (i + 1));
       st.emplace(a[i]);
       sum += a[i];
@@ -69,7 +68,6 @@ void solve() {
         sum -= *st.begin();
         st.erase(st.begin());
       } 
-      debug("despu",i,a[i],sum,ans,d*(i+1));
     }
     debug(i,ans,sum);
     print_multi_set(st);
