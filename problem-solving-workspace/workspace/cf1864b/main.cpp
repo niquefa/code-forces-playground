@@ -28,45 +28,27 @@ int main() {
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
-
 void solve() {
-  int x;
-  cin >> x;
-  int l = 1;
-  for( int bit = 30; bit > 0; -- bit ) {
-    if( ((1 << bit)) <= x ) {
-      l = bit;
-      break;
-    }
+  int n, k;
+  string s;
+  cin >> n >> k >> s;
+  if( k%2 == 0 ) {
+    sort(s.begin(), s.end());
+    cout << s << endl;
+    return;
   }
-  
-  
-  vector<int> ans;
-  ans.push_back(x);
-  for( int bit = 0; bit < l - 1; ++ bit ) {
-    if( (1 << bit) & x ) {
-      x -= (1 << bit);
-      ans.push_back(x);
-      
-    }
+  vector<char> even_positions;
+  vector<char> odd_positions;
+  for( int i = 0; i < n; ++ i ) {
+    if( i % 2 == 0 ) even_positions.push_back(s[i]);
+    else odd_positions.push_back(s[i]);
   }
-
-  while( l > 0 ) {
-    x -= (1<<(l-1));
-    ans.push_back(x);
-    --l;
+  sort(even_positions.begin(), even_positions.end());
+  sort(odd_positions.begin(), odd_positions.end());
+  string ss = "";
+  for( int i = 0; i < n; ++ i ) {
+    if( i % 2 == 0 ) ss += even_positions[i / 2];
+    else ss += odd_positions[i / 2];
   }
-  sort(ans.rbegin(), ans.rend());
-  if( ans[ans.size() - 1] != 1 ){
-    ans.push_back(1);
-  }
-  sort(ans.rbegin(), ans.rend());
-  debug(x,l);
-  va(ans)
-
-  cout << ans.size() << endl;
-  for( int i = 0; i < ans.size(); ++ i ) {
-    cout << ans[i] << " ";
-  }
-  cout << endl;
+  cout << ss << endl;
 }

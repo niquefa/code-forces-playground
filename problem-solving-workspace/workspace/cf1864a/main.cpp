@@ -9,6 +9,12 @@ using namespace std;
 
 #define va(c)            cerr<<#c << " :  ";for(int JJ=0;JJ<(c).size();++JJ)cerr<<(JJ==0?"[":"")<<c[JJ]<<(JJ==(c).size()-1?"] " + to_string((c).size()) + " Elements\n":" , ");
 
+void print_solution( const vector<int>& solution_vector ) {
+  for( int i = 0; i < solution_vector.size(); ++ i) 
+    cout << (i > 0 ? " " : "") << solution_vector[i];
+  cout << endl;
+}
+
 void solve();
 int main() {
   auto start_execution_time = chrono::high_resolution_clock::now();
@@ -28,45 +34,33 @@ int main() {
   cerr << "\nExecution time: " << elapsed.count() << " milliseconds for " << test_cases << " test cases.\n";
   return 0;
 }
-
 void solve() {
-  int x;
-  cin >> x;
-  int l = 1;
-  for( int bit = 30; bit > 0; -- bit ) {
-    if( ((1 << bit)) <= x ) {
-      l = bit;
-      break;
-    }
+  int n, x, y;
+  cin >> x >> y >> n;
+  vector<int> a(n);
+  a[0] = x;
+  a[n-1] = y;
+  int d = 1;
+  for( int i = n-2; i > 0; --i ) {
+    a[i] = a[i+1]-d;
+    ++d;
   }
   
-  
-  vector<int> ans;
-  ans.push_back(x);
-  for( int bit = 0; bit < l - 1; ++ bit ) {
-    if( (1 << bit) & x ) {
-      x -= (1 << bit);
-      ans.push_back(x);
-      
+  if( a[n-1] <= a[n-2] ) {
+    cout << -1 << endl;
+    return;
+  }
+  vector<int> b;
+  for( int i = 0; i < n-1; ++i ) {
+    b.push_back(a[i+1]-a[i]);
+  }
+  //va(a)
+  //va(b)
+  for( int i = 1; i < b.size(); ++ i ) {
+    if( b[i] >= b[i-1] ) {
+      cout << -1 << endl;
+      return;
     }
   }
-
-  while( l > 0 ) {
-    x -= (1<<(l-1));
-    ans.push_back(x);
-    --l;
-  }
-  sort(ans.rbegin(), ans.rend());
-  if( ans[ans.size() - 1] != 1 ){
-    ans.push_back(1);
-  }
-  sort(ans.rbegin(), ans.rend());
-  debug(x,l);
-  va(ans)
-
-  cout << ans.size() << endl;
-  for( int i = 0; i < ans.size(); ++ i ) {
-    cout << ans[i] << " ";
-  }
-  cout << endl;
+  print_solution(a);
 }
