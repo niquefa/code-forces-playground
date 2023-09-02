@@ -1,4 +1,4 @@
-Lang=cpp
-Problem=cf1624c
+Lang=go
+Problem=cf1624cGO
 CaseId=0
 SolutionFile=main
