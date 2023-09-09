@@ -25,29 +25,36 @@ func assert(f bool) {
 // ----------------------------- TEMPLATE END ----------------------------------
 
 func solve() {
-	var n int
-	scan(&n)
-	var f = make([]int, n+1)
-	for i := 1; i <= n; i++ {
-		scan(&f[i])
+	var n, k int
+	scan(&n, &k)
+	var a = make([]int, n)
+	var set = make(map[int]bool)
+	for i := 0; i < n; i++ {
+		scan(&a[i])
+		set[a[i]] = true
 	}
-	for i := 1; i <= n; i++ {
-		b := f[i]
-		c := f[b]
-		d := f[c]
-		if d == i {
-			printf("YES\n")
-			return
+	if len(set) < k {
+		printf("NO\n")
+		return
+	}
+	printf("YES\n")
+	for i := 0; i < n; i++ {
+		if k == 0 {
+			break
+		}
+		if set[a[i]] {
+			printf("%d ", i+1)
+			set[a[i]] = false
+			k--
 		}
 	}
-	printf("NO\n")
+
 }
 
 func main() {
 	startTime := time.Now()
 
 	defer flush()
-
 	solve()
 
 	debug(fmt.Sprintf("\n\t\t>>> %s EXECUTION TIME <<<\n", time.Since(startTime)))

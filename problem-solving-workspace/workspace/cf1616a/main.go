@@ -27,20 +27,20 @@ func assert(f bool) {
 func solve() {
 	var n int
 	scan(&n)
-	var f = make([]int, n+1)
-	for i := 1; i <= n; i++ {
-		scan(&f[i])
+	var a = make([]int, n)
+	var frequency = make(map[int]int)
+	for i := 0; i < n; i++ {
+		scan(&a[i])
+		frequency[a[i]]++
 	}
-	for i := 1; i <= n; i++ {
-		b := f[i]
-		c := f[b]
-		d := f[c]
-		if d == i {
-			printf("YES\n")
-			return
+	var ans = len(frequency)
+	for k, v := range frequency {
+		if v > 1 && k != 0 && frequency[-k] == 0 {
+			ans++
 		}
 	}
-	printf("NO\n")
+	fmt.Println(ans)
+
 }
 
 func main() {
@@ -48,7 +48,12 @@ func main() {
 
 	defer flush()
 
-	solve()
+	var ntc int = 1
+	scan(&ntc)
+	for t := 0; t < ntc; t++ {
+		debug("\n====================================", t, "====================================")
+		solve()
+	}
 
 	debug(fmt.Sprintf("\n\t\t>>> %s EXECUTION TIME <<<\n", time.Since(startTime)))
 }
