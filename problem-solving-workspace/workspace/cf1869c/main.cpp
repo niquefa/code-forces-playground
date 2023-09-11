@@ -54,6 +54,7 @@ void solve() {
       b += i;
     cout << b <<endl; 
   }
+  
   for(int i = 0; i < n; ++i) {
     shuffle(permutation.begin(), permutation.end(), g);
 
@@ -64,6 +65,7 @@ void solve() {
     }
     for(int j = 0; j < m; ++j) {
       cout << permutation[j] << " ";
+      
     }
     cout << "\n";
   }
