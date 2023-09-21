@@ -98,7 +98,7 @@ void solve() {
     return;
   }
   if( possible(adj,a,b) ) {
-    cout << "NO" << endl;
+    cout << "No" << endl;
     return;
   }
   cout << "NO" << endl;
