@@ -113,7 +113,8 @@
     "expected": "cpp",
     "source_location": "cpp",
     "spanstream": "cpp",
-    "syncstream": "cpp"
+    "syncstream": "cpp",
+    "format": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cSpell.words": [
