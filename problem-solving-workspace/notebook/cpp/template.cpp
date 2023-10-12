@@ -14,6 +14,20 @@ using namespace std;
 #define vaa(c)           cerr <<#c << " :  "<<endl;for(int II=0;II<(c).size();++II)for(int JJ=0;JJ<(c[II]).size();++JJ)cerr <<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==(c[II]).size()-1?"]\n":"|");
 #define vaat(c,F,C)      cerr <<#c << " :  "<<endl;for(int II=0;II<F;++II)for(int JJ=0;JJ<C;++JJ)cerr <<(JJ==0?"\t[":"")<<c[II][JJ]<<(JJ==C-1?"]\n":"|");
 
+template <typename VC>
+std::vector<VC> rot90(const int n, const int m, const std::vector<VC>& A, bool counter_clockwise = true) {
+  std::vector<VC> B(m, VC(n, A[0][0]));
+  if (counter_clockwise) {
+    for(int x = 0; x < n; x++)
+      for(int y = 0; y < m; y++)
+        B[m - 1 - y][x] = A[x][y];
+  } else {
+    for(int x = 0; x < n; x++)
+      for(int y = 0; y < m; y++)
+        B[y][n - 1 - x] = A[x][y];
+  }
+  return B;
+}
 
 template<class T> string grow_to_size( T element , int size_to_get , const string& str_to_append = " " ){
   string answer = to_string(element);
